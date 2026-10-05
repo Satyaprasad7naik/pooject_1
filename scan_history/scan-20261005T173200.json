@@ -1,0 +1,1137 @@
+{
+  "scan_id": "scan-20261005T173200",
+  "timestamp": "2026-10-05T17:32:00.666799",
+  "stats": {
+    "total_missions": 10,
+    "critical_count": 0,
+    "high_count": 0,
+    "overall_risk": 0,
+    "overall_severity": "LOW"
+  },
+  "detections": [
+    {
+      "mission_id": "rc_audit_01",
+      "mission_name": "Dead Stock Capital Trap",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Identify products where inventory.stock_count remains above reorder_point for 90+ days with zero units_sold in sales_events, join products.sku = inventory.sku = sales_events.sku, calculate tied capital as stock_count * unit_cost and retail exposure as stock_count * retail_price, group by category and supplier_id to quantify dead stock risk",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791221283.612,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791221283.613,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Identify products where inventory.stock_count remains above reorder_point for 90+ days with zero units_sold in sales_events, join products.sku = inventory.sku = sales_events.sku, calculate tied capital as stock_count * unit_cost and retail exposure as stock_count * retail_price, group by category and supplier_id to quantify dead stock risk"
+        },
+        {
+          "ts": 1791221283.613,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221331.857,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221331.857,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221332.358,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221380.176,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221380.177,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221381.177,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221428.466,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221428.467,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221428.467,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11ffc39d0 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791221428.524,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791221428.527,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221475.792,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        }
+      ]
+    },
+    {
+      "mission_id": "rc_audit_02",
+      "mission_name": "Sizing Curve Collapse",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Detect sizing anomalies by comparing size-level stock distribution vs sales velocity within each style_name and category: find styles where one size holds >40% of total inventory.stock_count but contributes <10% of total sales_events.units_sold, indicating broken size curves and future markdown risk",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791221283.614,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791221283.614,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Detect sizing anomalies by comparing size-level stock distribution vs sales velocity within each style_name and category: find styles where one size holds >40% of total inventory.stock_count but contributes <10% of total sales_events.units_sold, indicating broken size curves and future markdown risk"
+        },
+        {
+          "ts": 1791221283.614,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221331.659,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221331.659,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221332.16,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221380.464,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221380.464,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221381.466,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221428.557,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221428.557,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221428.557,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11ffc3ad0 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791221428.614,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791221428.616,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221475.797,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        }
+      ]
+    },
+    {
+      "mission_id": "rc_audit_03",
+      "mission_name": "Supplier Latency Stockout Risk",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Correlate suppliers with lead_time_days > 30 and on_time_rate < 85% to inventory where stock_count <= reorder_point and sales_events shows high recent units_sold velocity, join via products.supplier_id = suppliers.supplier_id, to flag imminent stockouts driven by supplier delays",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791221283.615,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791221283.615,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Correlate suppliers with lead_time_days > 30 and on_time_rate < 85% to inventory where stock_count <= reorder_point and sales_events shows high recent units_sold velocity, join via products.supplier_id = suppliers.supplier_id, to flag imminent stockouts driven by supplier delays"
+        },
+        {
+          "ts": 1791221283.615,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221331.182,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221331.182,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221331.683,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221379.732,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221379.732,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221380.733,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221427.788,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221427.789,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221427.789,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x1201322d0 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791221427.844,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791221427.845,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221474.954,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        }
+      ]
+    },
+    {
+      "mission_id": "rc_audit_04",
+      "mission_name": "Reorder Point Breach Cascade",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Find all inventory records where stock_count < reorder_point and last_restocked_at is older than suppliers.lead_time_days, join products and suppliers, calculate days breached and at-risk revenue as reorder_point * retail_price, prioritize by category sell-through rate from sales_events",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791221283.616,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791221283.616,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Find all inventory records where stock_count < reorder_point and last_restocked_at is older than suppliers.lead_time_days, join products and suppliers, calculate days breached and at-risk revenue as reorder_point * retail_price, prioritize by category sell-through rate from sales_events"
+        },
+        {
+          "ts": 1791221283.616,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221331.133,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221331.134,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221331.636,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221379.88,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221379.88,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221380.881,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221428.141,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221428.141,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221428.169,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11ffc2650 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791221428.224,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791221428.226,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221475.521,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        }
+      ]
+    },
+    {
+      "mission_id": "rc_audit_05",
+      "mission_name": "Margin Compression Hotspots",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Identify products where (retail_price - unit_cost) / retail_price margin is <15% and inventory.stock_count is high while sales_events.units_sold is declining over last 60 days, grouped by supplier and country to detect supplier-driven cost inflation eroding profitability",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791221283.617,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791221283.617,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Identify products where (retail_price - unit_cost) / retail_price margin is <15% and inventory.stock_count is high while sales_events.units_sold is declining over last 60 days, grouped by supplier and country to detect supplier-driven cost inflation eroding profitability"
+        },
+        {
+          "ts": 1791221283.617,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221331.416,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221331.416,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221331.917,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221380.169,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221380.17,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221381.171,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221428.21,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221428.21,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221428.211,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x120080ed0 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791221428.266,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791221428.268,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221475.372,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        }
+      ]
+    },
+    {
+      "mission_id": "rc_audit_06",
+      "mission_name": "Channel Demand Distortion",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Analyze sales_events.channel performance per sku vs inventory.location stock levels to detect channel-specific anomalies: SKUs with >70% units_sold in one channel but inventory heavily allocated to a different location, indicating fulfillment mismatch and lost sales risk",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791221283.618,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791221283.618,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Analyze sales_events.channel performance per sku vs inventory.location stock levels to detect channel-specific anomalies: SKUs with >70% units_sold in one channel but inventory heavily allocated to a different location, indicating fulfillment mismatch and lost sales risk"
+        },
+        {
+          "ts": 1791221283.619,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221331.547,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221331.548,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221332.049,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221379.795,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221379.796,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221380.797,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221428.03,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221428.03,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221428.03,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x120083c50 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791221428.084,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791221428.085,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221475.521,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        }
+      ]
+    },
+    {
+      "mission_id": "rc_audit_07",
+      "mission_name": "Supplier Concentration Fragility",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Calculate supplier concentration risk by aggregating total inventory value (stock_count * unit_cost) and total sales_events.units_sold per supplier_id and country, flag where a single supplier or country accounts for >35% of category revenue or stock, exposing geopolitical and single-source failure risk",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791221283.619,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791221283.619,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Calculate supplier concentration risk by aggregating total inventory value (stock_count * unit_cost) and total sales_events.units_sold per supplier_id and country, flag where a single supplier or country accounts for >35% of category revenue or stock, exposing geopolitical and single-source failure risk"
+        },
+        {
+          "ts": 1791221283.62,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221331.266,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221331.266,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221331.767,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221379.865,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221379.865,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221380.866,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221428.087,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221428.087,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221428.088,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x1201333d0 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791221428.18,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791221428.197,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221475.521,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        }
+      ]
+    },
+    {
+      "mission_id": "rc_audit_08",
+      "mission_name": "Phantom Inventory Signal",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Detect phantom inventory where inventory.stock_count is high (>50) but sales_events shows zero units_sold for 60+ days and last_restocked_at is >90 days ago, join products to check if retail_price is significantly above category average, suggesting shrinkage, data error, or unsellable stock",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791221283.621,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791221283.621,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Detect phantom inventory where inventory.stock_count is high (>50) but sales_events shows zero units_sold for 60+ days and last_restocked_at is >90 days ago, join products to check if retail_price is significantly above category average, suggesting shrinkage, data error, or unsellable stock"
+        },
+        {
+          "ts": 1791221283.621,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221331.436,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221331.436,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221331.936,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221379.995,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221379.995,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221380.995,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221427.964,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221427.965,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221427.965,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x12015cdd0 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791221428.019,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791221428.02,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221475.294,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        }
+      ]
+    },
+    {
+      "mission_id": "rc_audit_09",
+      "mission_name": "Category Velocity Decay",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Track category-level sell-through decay by comparing total sales_events.units_sold per category in last 30 days vs prior 60 days against current inventory.stock_count, flag categories where velocity dropped >40% while stock_count increased, signaling overbuying or trend collapse",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791221283.622,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791221283.622,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Track category-level sell-through decay by comparing total sales_events.units_sold per category in last 30 days vs prior 60 days against current inventory.stock_count, flag categories where velocity dropped >40% while stock_count increased, signaling overbuying or trend collapse"
+        },
+        {
+          "ts": 1791221283.622,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221331.433,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221331.434,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221331.935,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221380.025,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221380.026,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221381.026,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221428.174,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221428.175,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221428.175,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11e64d950 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791221428.233,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791221428.235,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221475.294,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        }
+      ]
+    },
+    {
+      "mission_id": "rc_audit_10",
+      "mission_name": "Reorder Misalignment Overstock",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Find SKUs where inventory.reorder_point is set >50% higher than 30-day average sales_events.units_sold velocity yet stock_count already exceeds 2x monthly sales, join suppliers to check lead_time_days, to expose inflated reorder points causing chronic overstock and working capital drain",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791221283.623,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791221283.623,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Find SKUs where inventory.reorder_point is set >50% higher than 30-day average sales_events.units_sold velocity yet stock_count already exceeds 2x monthly sales, join suppliers to check lead_time_days, to expose inflated reorder points causing chronic overstock and working capital drain"
+        },
+        {
+          "ts": 1791221283.623,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221331.416,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221331.416,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221331.918,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221380.022,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221380.022,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221381.023,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221427.92,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        },
+        {
+          "ts": 1791221427.921,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM JSON decode failed after repair: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "ts": 1791221427.921,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x120130150 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791221427.974,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791221427.975,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791221475.294,
+          "level": "ERROR",
+          "node": "llm.py",
+          "msg": "LLM Error: Request timed out."
+        }
+      ]
+    }
+  ],
+  "clusters": [],
+  "narrative": {
+    "title": "Intelligence Brief",
+    "overall_risk": 0,
+    "overall_severity": "LOW",
+    "executive_summary": "Scan completed. Review individual findings for details.",
+    "threat_vectors": [],
+    "immediate_actions": [
+      "Review detection cards for specific findings"
+    ],
+    "monitoring_recommendations": [
+      "Continue scheduled scans"
+    ]
+  }
+}

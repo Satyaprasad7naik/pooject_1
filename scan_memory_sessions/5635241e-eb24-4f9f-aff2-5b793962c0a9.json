@@ -1,0 +1,663 @@
+{
+  "_last_touched": 1791221520.665609,
+  "history": [
+    {
+      "timestamp": "2026-10-05T17:06:58.473629",
+      "missions": [
+        {
+          "name": "Dead Stock Capital Trap",
+          "query": "Which SKUs have maintained stock_count > 50 units with zero units_sold in the last 90 days, and what is the total capital trapped (stock_count * unit_cost) and potential retail value at risk (stock_count * retail_price) by category and supplier?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Reorder Breach Imminent Stockout",
+          "query": "Which SKUs currently have inventory.stock_count below inventory.reorder_point and last_restocked_at older than 30 days, ranked by sales velocity (average units_sold per day in last 30 days) to identify imminent stockout risk?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Sizing Curve Anomaly",
+          "query": "For each style_name, which sizes show critical imbalance where one size has stock_count < 5 and high recent units_sold while another size of the same style has stock_count > 40 and near-zero units_sold in last 60 days, indicating broken size curve allocation?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Supplier Delay Fragility",
+          "query": "Which SKUs are supplied by suppliers with on_time_rate < 85% and lead_time_days > 14 where current stock_count is less than 2x reorder_point, exposing high risk of stockout due to supplier unreliability?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Margin Erosion Slow Mover",
+          "query": "Which products have gross margin ((retail_price - unit_cost)/retail_price) < 30% combined with inventory turnover ratio (total units_sold last 60 days / stock_count) < 0.3, signaling unprofitable overstock requiring markdown or delisting?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "New Launch Orphan Inventory",
+          "query": "Which products with created_at in the last 90 days have total units_sold < 10 despite initial stock_count remaining > 80% unsold across all locations, indicating failed launch and orphaned inventory?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Channel Demand Ghosting",
+          "query": "Which SKUs or categories show extreme channel skew with >85% of units_sold in one channel (online vs in-store) and <5 units sold in the other channel over last 60 days, indicating potential listing, pricing, or distribution failure?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Supplier Concentration Risk",
+          "query": "Which suppliers account for >15% of distinct SKUs or >20% of total inventory value (stock_count * unit_cost) and have on_time_rate below 90% or single-country dependency, creating single-point-of-failure risk?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        }
+      ],
+      "domain_scores": {
+        "retail_clothing": 0
+      },
+      "critical_domains": []
+    },
+    {
+      "timestamp": "2026-10-05T17:08:50.009119",
+      "missions": [
+        {
+          "name": "Location-Concentrated Stranded Inventory",
+          "query": "Which SKUs have >75% of total stock_count concentrated in a single inventory.location while sales_events in the last 60 days show >50% of units_sold occurring in the opposite channel/location footprint, and what is the stranded value (stock_count * unit_cost) indicating distribution misallocation rather than true dead stock?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Reorder Point Lead-Time Under-Coverage",
+          "query": "For each SKU, calculate lead_time_demand = suppliers.lead_time_days * (AVG units_sold per day last 60 days from sales_events). Flag SKUs where inventory.reorder_point < lead_time_demand * 1.5 AND inventory.stock_count < lead_time_demand * 1.2, exposing mathematically insufficient reorder buffers that will stockout before replenishment arrives.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Phantom Inventory and Shrinkage Signal",
+          "query": "Which SKUs have inventory.last_restocked_at > 120 days ago, inventory.stock_count between 5 and 25 units, and zero units_sold in sales_events in the last 120 days, distinguishing low-quantity phantom/shrinkage records from bulk dead stock (>50 units)?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Category Capital Pareto Inversion",
+          "query": "Which products.category holds >25% of total inventory value (SUM inventory.stock_count * products.unit_cost) but contributes <10% of total units_sold and retail revenue (SUM units_sold * retail_price) in the last 60 days, revealing capital trapped in underperforming categories versus sales drivers?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Premium Price Dormant Capital Trap",
+          "query": "Which SKUs are in the top quartile of products.retail_price with gross margin ((retail_price - unit_cost)/retail_price) > 60% but have inventory.stock_count > 30 and SUM units_sold < 5 in last 60 days, indicating overpriced high-value inventory with no velocity and maximum capital at risk?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Intra-Category Supplier Cost Creep",
+          "query": "Which SKUs have products.unit_cost > 1.5x the category median unit_cost (or >2 std dev above category mean) while their gross margin is >15 points below category median margin and inventory turnover (units_sold last 60 days / stock_count) < 0.5, flagging supplier cost inflation without pricing power?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Demand Velocity Cliff with Stale Reorder",
+          "query": "Which SKUs show >50% deceleration in sales velocity (avg units_sold per day last 30 days vs prior 30-60 days) while inventory.stock_count remains > inventory.reorder_point and inventory.last_restocked_at > 60 days ago, indicating fading demand with obsolete reorder assumptions and impending overstock?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Country-Level Category Supply Fragility",
+          "query": "Which products.category sources >60% of its distinct SKUs or total inventory value (stock_count * unit_cost) from a single suppliers.country where that country's supplier cohort has AVG on_time_rate < 88% or AVG lead_time_days > 18, exposing geographic concentration risk beyond single-supplier dependency?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Color Variant Failure Inside Active Style",
+          "query": "Within each products.style_name that has total units_sold > 20 in last 60 days (active style), which specific color variants have inventory.stock_count > 20 and units_sold < 3 in same period, quantifying hidden dead variants masked by style-level aggregate success and trapped value per color?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Stale Reorder Point Never Recalibrated",
+          "query": "Which SKUs have inventory.reorder_point unchanged despite sales velocity (avg units_sold per day) doubling or halving (>100% increase or >50% decrease) when comparing last 30 days vs prior 90 days, with inventory.last_restocked_at > 90 days, indicating reorder points never recalibrated to demand shifts?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        }
+      ],
+      "domain_scores": {
+        "retail_clothing": 0
+      },
+      "critical_domains": []
+    },
+    {
+      "timestamp": "2026-10-05T17:10:02.057747",
+      "missions": [
+        {
+          "name": "Reorder Point Calibration Failure",
+          "query": "For each SKU, calculate expected lead-time demand as (avg daily units_sold last 60 days from sales_events * suppliers.lead_time_days). Compare to inventory.reorder_point and flag SKUs where reorder_point is <50% or >300% of expected lead-time demand, indicating severely miscalibrated reorder logic that will cause either premature reorders or late stockouts. Rank by absolute deviation and include stock_count and supplier lead_time.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Inter-Location Stock Misallocation",
+          "query": "Identify style_name + sku combinations where inventory shows extreme location imbalance: one location has stock_count > 40 while another location for the SAME sku has stock_count < 5, and the low-stock location's channel-correlated sales (e.g., online vs in-store) show higher velocity in last 30 days. Calculate transfer opportunity value (excess stock * unit_cost) and potential stockout days remaining at low location.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Color Trend Overstock Divergence",
+          "query": "Within each category, calculate share of total units_sold last 90 days vs share of total current inventory value (stock_count * unit_cost) by color. Flag colors where inventory value share exceeds sales share by >15 percentage points and inventory value > $5000, indicating over-investment in a failing color trend requiring markdown.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Stock Coverage Below Lead Time Buffer",
+          "query": "For each SKU with avg daily sales >0.5 in last 60 days, compute days of coverage as inventory.stock_count / avg daily sales. Flag SKUs where coverage days < (suppliers.lead_time_days + 7) but stock_count is still ABOVE reorder_point, revealing hidden stockout risk that reorder_point alone misses. Rank by coverage gap and include supplier on_time_rate.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Premium Price Without Velocity",
+          "query": "For each category, compute mean and stddev of retail_price. Flag SKUs where retail_price > (category mean + 1.5*stddev) AND total units_sold last 90 days is in bottom 25th percentile of category, while unit_cost is not proportionally higher. Calculate implied overprice gap and lost revenue potential if priced at category median with median velocity.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Aging Inventory with Decelerating Demand",
+          "query": "Find SKUs where inventory.last_restocked_at is >75 days ago, current stock_count is 15-50 units (not dead stock), and sales velocity last 30 days is >40% lower than velocity prior 30-60 days. Calculate capital trapped (stock_count * unit_cost) and months to clear at current decelerating velocity to identify slow obsolescence before it becomes dead stock.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Style Proliferation Drag",
+          "query": "Aggregate by products.style_name: count distinct SKUs (size/color variants), total stock_count, total units_sold last 90 days, and inventory turnover (units_sold / stock_count). Flag styles with >6 variants but turnover <0.4 and total inventory value >$3000, indicating SKU proliferation where variant complexity destroys sell-through and ties up capital.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Category Long-Tail Inventory Concentration",
+          "query": "For each category, rank SKUs by units_sold last 90 days. Calculate what % of total category inventory units (stock_count) is held by the bottom 50% of SKUs by sales, and what % of revenue (units_sold * retail_price) they generate. Flag categories where bottom 50% SKUs hold >45% of units but generate <15% of revenue, quantifying long-tail drag.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Geographic Category Dependency Risk",
+          "query": "For each category and suppliers.country, calculate % of category SKUs and % of category inventory value (stock_count * unit_cost) sourced from that country. Flag categories where a single country supplies >40% of inventory value AND average supplier on_time_rate for that country-category is <88% or avg lead_time_days >18, exposing geographic concentration risk beyond single supplier.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Near-Stockout Revenue Leakage",
+          "query": "Identify SKUs where inventory.stock_count is 1-8 units (near-zero) at any location, last_restocked_at >20 days ago, but avg daily units_sold last 30 days was >1.5 units/day before depletion. Estimate lost sales for next lead_time_days as (avg daily sales * lead_time_days - stock_count) * retail_price and rank by estimated revenue at risk due to failure to replenish despite proven demand.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        }
+      ],
+      "domain_scores": {
+        "retail_clothing": 0
+      },
+      "critical_domains": []
+    },
+    {
+      "timestamp": "2026-10-05T17:12:06.729819",
+      "missions": [
+        {
+          "name": "Size Fragmentation in Winning Styles",
+          "query": "Within each products.style_name that has >=3 distinct sizes and total SUM sales_events.units_sold >15 in last 60 days, which specific size variants have inventory.stock_count >15 and SUM units_sold <2 in last 60 days while at least one other size of the same style_name sold >10 units in same period? Calculate trapped value per dead size (stock_count * products.unit_cost) to quantify hidden size-level dead stock masked by style-level aggregate success.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Location Imbalance Transfer Failure",
+          "query": "Which SKUs have inventory split across multiple inventory.location records where one location has stock_count <= inventory.reorder_point (breach) while another location for same sku holds stock_count >3 * reorder_point and total stock_count across locations >2 * reorder_point, with sales_events in last 60 days showing >5 units_sold in the channel corresponding to the understocked location? Flag as distribution failure requiring transfer, not reorder, and calculate excess value at overstocked location.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Stale Full-Price Aging Inventory",
+          "query": "Which SKUs have products.created_at >180 days ago, inventory.stock_count >40, inventory turnover (SUM sales_events.units_sold last 90 days / stock_count) <0.2, inventory.last_restocked_at >90 days ago, and products.retail_price >90th percentile of retail_price within same products.category? Identify inventory never marked down despite 6+ months of no velocity and compute stranded value (stock_count * unit_cost) and months of supply.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Systematic Supplier Margin Extraction",
+          "query": "For each suppliers.supplier_id supplying >10 SKUs, calculate AVG gross margin ((products.retail_price - products.unit_cost)/products.retail_price) across its SKUs vs category median margin for same products.category. Which suppliers have AVG margin >10 percentage points below category median while their AVG unit_cost >= category median unit_cost, indicating systematic overcharging without pricing power? Include supplier on_time_rate and lead_time_days to assess if low margin is compounded by poor service.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Inflated Reorder Point Overstock Lock",
+          "query": "For each SKU calculate lead_time_demand = suppliers.lead_time_days * (AVG daily units_sold last 60 days from sales_events). Which SKUs have inventory.reorder_point >3 * lead_time_demand AND inventory.stock_count >1.5 * reorder_point with AVG daily velocity <1.0 and inventory.last_restocked_at >60 days ago? This flags mathematically inflated reorder thresholds guaranteeing overstock and capital lock versus true demand, opposite of insufficient buffer risk.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Ghost SKU Never-Sold Phantom Inventory",
+          "query": "Which SKUs have inventory.stock_count >0 but zero rows in sales_events ever (ghost SKUs never sold) with inventory.last_restocked_at >90 days ago, versus SKUs with stock_count between 1-10 and zero SUM units_sold in last 180 days but with historical sales before that? Distinguish never-launched phantom records from shrinkage/data errors and calculate total stranded value (stock_count * unit_cost) and count per group by products.category.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Category Size Curve Distortion",
+          "query": "For each products.category and products.size, calculate inventory share = SUM inventory.stock_count for that size / SUM stock_count for category and sales share = SUM sales_events.units_sold last 60 days for that size / SUM units_sold for category. Which size-category pairs have inventory share exceeding sales share by >15 percentage points (overstocked sizes like XS/XXL) or sales share exceeding inventory share by >15 points (understocked core sizes M/L), revealing size curve distortion between buying and demand?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Imminent Stockout Long-Lead High Velocity",
+          "query": "Which SKUs have suppliers.lead_time_days > (category AVG lead_time_days +7) and suppliers.on_time_rate <90% combined with AVG daily units_sold last 30 days >1.0, where days_of_supply = inventory.stock_count / daily velocity is < (suppliers.lead_time_days +7) and inventory.stock_count < inventory.reorder_point *2? Flag SKUs that will stockout before replenishment can arrive due to unreliable long-lead suppliers and compute stockout countdown days.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Inverted Price-Cost Margin Collapse",
+          "query": "Which SKUs have products.retail_price in bottom 50th percentile of their products.category but products.unit_cost in top 25th percentile of same category, resulting in gross margin ((retail_price - unit_cost)/retail_price) <15% and inventory turnover (SUM units_sold last 60 days / stock_count) <0.4? Flag SKUs where premium cost is not reflected in pricing, indicating procurement/pricing failure, and rank by inventory value at risk (stock_count * unit_cost).",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Style-Level Supplier Cost Variance Leakage",
+          "query": "Which products.style_name are sourced from >=2 distinct suppliers.supplier_id where MAX(products.unit_cost) >1.25 * MIN(products.unit_cost) for SKUs sharing same style_name (or coefficient of variation >20%), while products.retail_price variance is <10% within same style? Expose procurement inconsistency where identical style has 25%+ cost variance across suppliers, calculate margin delta between cheapest and most expensive supplier variant and total excess cost (stock_count * cost delta).",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        }
+      ],
+      "domain_scores": {
+        "retail_clothing": 0
+      },
+      "critical_domains": []
+    },
+    {
+      "timestamp": "2026-10-05T17:12:59.381567",
+      "missions": [
+        {
+          "name": "Size Curve Inversion Trap",
+          "query": "Within each products.style_name + products.color with >=30 total units_sold in last 90 days, calculate sales share by size vs inventory share by size (SUM inventory.stock_count per size / total stock for that style-color). Flag combinations where the size(s) comprising >35% of sales hold <15% of inventory AND the size(s) comprising <10% of sales hold >30% of inventory. Include size-level turnover (units_sold last 90 days / stock_count), total trapped value in overstocked sizes (stock_count * unit_cost), and days of stockout risk for understocked sizes at current velocity.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Revenue Concentration on Unreliable Supplier",
+          "query": "Rank SKUs by revenue (units_sold last 90 days * retail_price) and identify the top 20% revenue-generating SKUs per products.category. For each suppliers.supplier_id, calculate what % of that top-revenue cohort it supplies and its weighted AVG on_time_rate and lead_time_days. Flag suppliers supplying >25% of top-revenue SKUs in any category where their on_time_rate <90% or lead_time_days >16, and quantify revenue at risk (sum revenue of dependent SKUs) and avg days of coverage remaining (stock_count / daily velocity).",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Wasted Restock Ghost Inventory",
+          "query": "Find SKUs where inventory.last_restocked_at is within last 45 days (recent restock) but sales_events shows 0-2 units_sold in last 60 days and inventory.stock_count > inventory.reorder_point + 10. Join to products to get unit_cost and retail_price. Calculate wasted capital deployed (stock_count * unit_cost), days since restock vs zero-velocity period, and flag if supplier on_time_rate was not the issue (on_time_rate >90%) indicating demand misread rather than supply delay. Rank by trapped value.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Channel-Location Fulfillment Mismatch",
+          "query": "Aggregate sales_events.units_sold last 60 days by SKU and channel, and inventory.stock_count by SKU and location. Flag SKUs where >70% of sales are from one channel (e.g., online) but >70% of inventory.stock_count is held at a non-correlated location (e.g., physical store locations) with <20% of stock at the fulfillment-appropriate location. Estimate fulfillment friction cost as excess stock at wrong location * unit_cost and potential lost sales due to channel stockout (channel velocity * supplier lead_time_days).",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "New SKU Launch Failure",
+          "query": "Identify products where products.created_at is within last 120 days (new launch) with inventory.stock_count >25 and retail_price > category median retail_price, but sales_events shows <5 units_sold in last 60 days. Calculate sell-through rate (units_sold / (units_sold + stock_count)), capital trapped (stock_count * unit_cost), and compare unit_cost and retail_price to category medians to determine if overpricing or over-assortment caused flop. Rank by inventory value at risk.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Premium Cost for Unreliable Supply",
+          "query": "Per products.category, calculate quartiles for suppliers.unit_cost proxy (AVG products.unit_cost per supplier) and suppliers.on_time_rate. Flag suppliers in top quartile of cost (most expensive) AND bottom quartile of on_time_rate (<85%) or top quartile of lead_time_days (>20). For their SKUs, list SKU, unit_cost premium vs category median, on_time_rate, lead_time_days, stock_count, and turnover last 60 days. Quantify annual cost premium (premium * units_sold) vs reliability penalty to expose paying more for worse service.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Active Breach with Unrecoverable Lead Time",
+          "query": "Find SKUs where inventory.stock_count < inventory.reorder_point (active breach) AND days of coverage (stock_count / avg daily units_sold last 30 days) < suppliers.lead_time_days where avg daily sales >0.3. Include only SKUs with suppliers.on_time_rate <88% to compound risk. Calculate coverage gap (lead_time_days - coverage_days), projected stockout days before replenishment arrives, and estimated lost revenue (gap * avg daily sales * retail_price). Rank by revenue at risk.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Tail Size Capital Trap",
+          "query": "For each products.style_name + color with >=4 distinct sizes and total stock_count >40, calculate concentration: % of units_sold last 90 days from top 2 sizes. Flag where top 2 sizes drive >80% of sales but bottom sizes (remaining sizes) hold >50% of inventory.stock_count and have turnover <0.2. Compute trapped value in tail sizes (sum stock_count * unit_cost for bottom sizes), and months to clear at current velocity, to flag size proliferation without demand.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Aged Seasonal Dead Stock",
+          "query": "Identify SKUs where products.created_at < 180 days ago (aged assortment) AND inventory.last_restocked_at >90 days ago AND inventory.stock_count >20 AND sales_events.units_sold last 90 days <=4. Calculate inventory age (days since created_at), days since last sale, total inventory value (stock_count * unit_cost), and markdown required to clear (value at retail_price vs at 50% markdown). Flag categories where >15% of SKUs meet this criteria indicating systemic overbuy of aging styles.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Fragmented Size Stockout Risk",
+          "query": "For each products.style_name, aggregate inventory.stock_count by size across all locations and sales velocity by size last 30 days. Flag styles where overall style stock_count appears healthy (>50 units) but 1-2 core sizes (M, L) have stock_count <6 across all locations while velocity >1.0 unit/day, masked by excess in fringe sizes (XS, XXL). Calculate size-level days of coverage, stockout probability before supplier lead_time_days, and lost revenue if core size stocks out while fringe sizes remain dead.",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        }
+      ],
+      "domain_scores": {
+        "retail_clothing": 0
+      },
+      "critical_domains": []
+    },
+    {
+      "timestamp": "2026-10-05T17:18:27.193321",
+      "missions": [
+        {
+          "name": "Security Domain Scan",
+          "query": "Show users with risk_level HIGH and account_status ACTIVE",
+          "domain": "security",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        }
+      ],
+      "domain_scores": {
+        "security": 0
+      },
+      "critical_domains": []
+    },
+    {
+      "timestamp": "2026-10-05T17:18:28.128766",
+      "missions": [
+        {
+          "name": "Operations Domain Scan",
+          "query": "Show system performance metrics and operational alerts",
+          "domain": "operations",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        }
+      ],
+      "domain_scores": {
+        "operations": 0
+      },
+      "critical_domains": []
+    },
+    {
+      "timestamp": "2026-10-05T17:18:50.395578",
+      "missions": [
+        {
+          "name": "Compliance Domain Scan",
+          "query": "Show recent compliance violations or audit findings",
+          "domain": "compliance",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        }
+      ],
+      "domain_scores": {
+        "compliance": 0
+      },
+      "critical_domains": []
+    },
+    {
+      "timestamp": "2026-10-05T17:31:42.986479",
+      "missions": [
+        {
+          "name": "Dead Stock Capital Trap",
+          "query": "Which SKUs have zero units sold in the last 90 days in sales_events but maintain stock_count > 50 in inventory, ranked by trapped capital value (stock_count * unit_cost)?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Size Curve Distortion Anomaly",
+          "query": "Within each style_name and category, which sizes show sell-through anomalies where one size's total units_sold deviates by >60% from the style's average size velocity while its inventory stock_count remains high?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Supplier Delay Exposure",
+          "query": "Which SKUs are supplied by suppliers with lead_time_days > 20 and on_time_rate < 85% and currently have inventory stock_count below reorder_point or within 20% above it?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Critical Reorder Point Breach",
+          "query": "List all inventory locations where stock_count is below reorder_point, joined with products and suppliers to prioritize by supplier lead_time_days descending and retail_price impact (stock deficit * retail_price)?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Aging Dead Stock by Location",
+          "query": "Which SKUs have not been restocked (last_restocked_at > 120 days ago) and have zero sales in last 90 days, but still show stock_count > reorder_point at specific locations, indicating phantom or unsellable inventory?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Supplier Concentration Risk",
+          "query": "Which suppliers provide >15% of distinct SKUs where those SKUs collectively have low total stock_count vs high recent units_sold velocity, creating single-supplier stockout risk if on_time_rate drops?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "High-Margin Dead Stock",
+          "query": "Which SKUs have the highest unrealized margin trapped (stock_count * (retail_price - unit_cost)) where units_sold is zero in last 60 days, grouped by category and color to find unsellable trends?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Channel-Specific Sizing Failure",
+          "query": "For each channel in sales_events, which size within each category has the lowest units_sold to stock_count ratio compared to other sizes, revealing channel-specific sizing or fit returns risk?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Reorder Point Miscalibration",
+          "query": "Which SKUs breached reorder_point (stock_count < reorder_point) but had high sales velocity (top 25% units_sold in last 30 days), indicating reorder_point is set too low relative to demand and supplier lead_time_days?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Country-Level Supplier Fragility",
+          "query": "Aggregated by suppliers.country, which countries supply a disproportionate share of dead-stock SKUs (zero sales last 90 days) or breach-prone inventory, correlating geographic supplier risk with inventory inefficiency?",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        }
+      ],
+      "domain_scores": {
+        "retail_clothing": 0
+      },
+      "critical_domains": []
+    },
+    {
+      "timestamp": "2026-10-05T17:32:00.665579",
+      "missions": [
+        {
+          "name": "Dead Stock Capital Trap",
+          "query": "Identify products where inventory.stock_count remains above reorder_point for 90+ days with zero units_sold in sales_events, join products.sku = inventory.sku = sales_events.sku, calculate tied capital as stock_count * unit_cost and retail exposure as stock_count * retail_price, group by category and supplier_id to quantify dead stock risk",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Sizing Curve Collapse",
+          "query": "Detect sizing anomalies by comparing size-level stock distribution vs sales velocity within each style_name and category: find styles where one size holds >40% of total inventory.stock_count but contributes <10% of total sales_events.units_sold, indicating broken size curves and future markdown risk",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Supplier Latency Stockout Risk",
+          "query": "Correlate suppliers with lead_time_days > 30 and on_time_rate < 85% to inventory where stock_count <= reorder_point and sales_events shows high recent units_sold velocity, join via products.supplier_id = suppliers.supplier_id, to flag imminent stockouts driven by supplier delays",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Reorder Point Breach Cascade",
+          "query": "Find all inventory records where stock_count < reorder_point and last_restocked_at is older than suppliers.lead_time_days, join products and suppliers, calculate days breached and at-risk revenue as reorder_point * retail_price, prioritize by category sell-through rate from sales_events",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Margin Compression Hotspots",
+          "query": "Identify products where (retail_price - unit_cost) / retail_price margin is <15% and inventory.stock_count is high while sales_events.units_sold is declining over last 60 days, grouped by supplier and country to detect supplier-driven cost inflation eroding profitability",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Channel Demand Distortion",
+          "query": "Analyze sales_events.channel performance per sku vs inventory.location stock levels to detect channel-specific anomalies: SKUs with >70% units_sold in one channel but inventory heavily allocated to a different location, indicating fulfillment mismatch and lost sales risk",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Supplier Concentration Fragility",
+          "query": "Calculate supplier concentration risk by aggregating total inventory value (stock_count * unit_cost) and total sales_events.units_sold per supplier_id and country, flag where a single supplier or country accounts for >35% of category revenue or stock, exposing geopolitical and single-source failure risk",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Phantom Inventory Signal",
+          "query": "Detect phantom inventory where inventory.stock_count is high (>50) but sales_events shows zero units_sold for 60+ days and last_restocked_at is >90 days ago, join products to check if retail_price is significantly above category average, suggesting shrinkage, data error, or unsellable stock",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Category Velocity Decay",
+          "query": "Track category-level sell-through decay by comparing total sales_events.units_sold per category in last 30 days vs prior 60 days against current inventory.stock_count, flag categories where velocity dropped >40% while stock_count increased, signaling overbuying or trend collapse",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        },
+        {
+          "name": "Reorder Misalignment Overstock",
+          "query": "Find SKUs where inventory.reorder_point is set >50% higher than 30-day average sales_events.units_sold velocity yet stock_count already exceeds 2x monthly sales, join suppliers to check lead_time_days, to expose inflated reorder points causing chronic overstock and working capital drain",
+          "domain": "retail_clothing",
+          "risk_score": 0,
+          "severity": "LOW",
+          "data_count": 0
+        }
+      ],
+      "domain_scores": {
+        "retail_clothing": 0
+      },
+      "critical_domains": []
+    }
+  ]
+}

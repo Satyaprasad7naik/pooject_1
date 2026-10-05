@@ -1,0 +1,3799 @@
+{
+  "scan_id": "scan-20261003T121129",
+  "timestamp": "2026-10-03T12:11:29.150993",
+  "stats": {
+    "total_missions": 11,
+    "critical_count": 0,
+    "high_count": 0,
+    "overall_risk": 44,
+    "overall_severity": "LOW"
+  },
+  "detections": [
+    {
+      "mission_id": "RC-AUDIT-01",
+      "mission_name": "Price-Cost Inversion & Margin Erosion",
+      "domain": "retail_clothing",
+      "severity": "MEDIUM",
+      "risk_score": 47,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 21,
+          "score": 100,
+          "detail": "21 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 21,
+          "score": 100,
+          "detail": "21 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "CRITICAL",
+          "score": 80,
+          "detail": "Base: CRITICAL"
+        }
+      },
+      "sql": "SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_sales, ROUND(SUM(cost), 2) AS total_cost, ROUND(SUM(profit), 2) AS total_profit, ROUND((SUM(profit) / MAX(SUM(sales), 1.0)) * 100, 2) AS profit_margin_pct FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_profit DESC LIMIT 90;",
+      "data_count": 21,
+      "results": [
+        {
+          "product": "Mouse",
+          "category": "Electronics",
+          "total_units_sold": 28,
+          "total_sales": 133919.0,
+          "total_cost": 94422.65,
+          "total_profit": 39496.35,
+          "profit_margin_pct": 29.49
+        },
+        {
+          "product": "Earphones",
+          "category": "Electronics",
+          "total_units_sold": 15,
+          "total_sales": 75812.0,
+          "total_cost": 47703.39,
+          "total_profit": 28108.61,
+          "profit_margin_pct": 37.08
+        },
+        {
+          "product": "Resistance Band",
+          "category": "Sports",
+          "total_units_sold": 9,
+          "total_sales": 39456.0,
+          "total_cost": 24637.56,
+          "total_profit": 14818.44,
+          "profit_margin_pct": 37.56
+        },
+        {
+          "product": "Shirt",
+          "category": "Clothing",
+          "total_units_sold": 20,
+          "total_sales": 26471.0,
+          "total_cost": 18016.38,
+          "total_profit": 8454.62,
+          "profit_margin_pct": 31.94
+        },
+        {
+          "product": "Dumbbells",
+          "category": "Sports",
+          "total_units_sold": 7,
+          "total_sales": 28061.0,
+          "total_cost": 20246.52,
+          "total_profit": 7814.48,
+          "profit_margin_pct": 27.85
+        },
+        {
+          "product": "T-Shirt",
+          "category": "Clothing",
+          "total_units_sold": 17,
+          "total_sales": 21417.0,
+          "total_cost": 13696.35,
+          "total_profit": 7720.65,
+          "profit_margin_pct": 36.05
+        },
+        {
+          "product": "Sunscreen",
+          "category": "Cosmetics",
+          "total_units_sold": 13,
+          "total_sales": 22041.0,
+          "total_cost": 15155.35,
+          "total_profit": 6885.65,
+          "profit_margin_pct": 31.24
+        },
+        {
+          "product": "Formal Shoes",
+          "category": "Footwear",
+          "total_units_sold": 8,
+          "total_sales": 21196.0,
+          "total_cost": 14605.4,
+          "total_profit": 6590.6,
+          "profit_margin_pct": 31.09
+        },
+        {
+          "product": "Smart Watch",
+          "category": "Electronics",
+          "total_units_sold": 7,
+          "total_sales": 24780.0,
+          "total_cost": 18195.37,
+          "total_profit": 6584.63,
+          "profit_margin_pct": 26.57
+        },
+        {
+          "product": "Biscuits",
+          "category": "Grocery",
+          "total_units_sold": 30,
+          "total_sales": 19151.0,
+          "total_cost": 13241.62,
+          "total_profit": 5909.38,
+          "profit_margin_pct": 30.86
+        },
+        {
+          "product": "Sofa",
+          "category": "Furniture",
+          "total_units_sold": 5,
+          "total_sales": 11660.0,
+          "total_cost": 6703.57,
+          "total_profit": 4956.43,
+          "profit_margin_pct": 42.51
+        },
+        {
+          "product": "Study Table",
+          "category": "Furniture",
+          "total_units_sold": 1,
+          "total_sales": 10695.0,
+          "total_cost": 6456.42,
+          "total_profit": 4238.58,
+          "profit_margin_pct": 39.63
+        },
+        {
+          "product": "Sugar",
+          "category": "Grocery",
+          "total_units_sold": 23,
+          "total_sales": 13246.0,
+          "total_cost": 9153.44,
+          "total_profit": 4092.56,
+          "profit_margin_pct": 30.9
+        },
+        {
+          "product": "Slippers",
+          "category": "Footwear",
+          "total_units_sold": 7,
+          "total_sales": 9619.0,
+          "total_cost": 6190.75,
+          "total_profit": 3428.25,
+          "profit_margin_pct": 35.64
+        },
+        {
+          "product": "Moisturizer",
+          "category": "Cosmetics",
+          "total_units_sold": 6,
+          "total_sales": 9465.0,
+          "total_cost": 6064.05,
+          "total_profit": 3400.95,
+          "profit_margin_pct": 35.93
+        },
+        {
+          "product": "Jeans",
+          "category": "Clothing",
+          "total_units_sold": 7,
+          "total_sales": 10512.0,
+          "total_cost": 7512.51,
+          "total_profit": 2999.49,
+          "profit_margin_pct": 28.53
+        },
+        {
+          "product": "Sneakers",
+          "category": "Footwear",
+          "total_units_sold": 4,
+          "total_sales": 10492.0,
+          "total_cost": 8253.21,
+          "total_profit": 2238.79,
+          "profit_margin_pct": 21.34
+        },
+        {
+          "product": "Shelf",
+          "category": "Furniture",
+          "total_units_sold": 1,
+          "total_sales": 8382.0,
+          "total_cost": 6471.15,
+          "total_profit": 1910.85,
+          "profit_margin_pct": 22.8
+        },
+        {
+          "product": "Shampoo",
+          "category": "Cosmetics",
+          "total_units_sold": 2,
+          "total_sales": 3698.0,
+          "total_cost": 2440.87,
+          "total_profit": 1257.13,
+          "profit_margin_pct": 33.99
+        },
+        {
+          "product": "Sandals",
+          "category": "Footwear",
+          "total_units_sold": 2,
+          "total_sales": 3732.0,
+          "total_cost": 2931.43,
+          "total_profit": 800.57,
+          "profit_margin_pct": 21.45
+        },
+        {
+          "product": "Skipping Rope",
+          "category": "Sports",
+          "total_units_sold": 1,
+          "total_sales": 2076.0,
+          "total_cost": 1602.44,
+          "total_profit": 473.56,
+          "profit_margin_pct": 22.81
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "line",
+        "title": "total_units_sold by category",
+        "x_axis_key": "category",
+        "y_axis_key": "total_units_sold",
+        "label": "total_units_sold",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "Profit analysis across 21 items. Top contributor: 'Mouse' generating \u20b939,496.35 in net profit (29.49% margin). Total profit: \u20b9162,180.57 on total sales of \u20b9505,881.00.",
+      "recommendation": "1. Promote high-margin items like 'Mouse' to maximize total gross margin.\n2. Review cost structures for low-margin products.\n3. Optimize procurement pricing with suppliers for top profit generators.",
+      "original_query": "Which SKUs in products have retail_price <= unit_cost or gross margin (retail_price - unit_cost)/retail_price < 0.10, and what is their total stock_count across inventory and total units_sold in sales_events last 90 days to quantify loss exposure if sold or trapped capital if unsold?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.12,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.12,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'Which SKUs in products have retail_price <= unit_cost or gross margin (retail_price - unit_cost)/retail_price < 0.10, and what is their total stock_count across inventory and total units_sold in sales_events last 90 days to quantify loss exposure if sold or trapped capital if unsold?'"
+        },
+        {
+          "ts": 1791029464.122,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: sales_analysis (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.122,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=sales_analysis, workflow=SELECT, conf=0.900, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.206,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.9) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.229,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.229,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: Which SKUs in products have retail_price <= unit_cost or gross margin (retail_price - unit_cost)/retail_price < 0.10, and what is their total stock_count across inventory and total units_sold in sales_events last 90 days to quantify loss exposure if sold or trapped capital if unsold?"
+        },
+        {
+          "ts": 1791029464.231,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: sales_analysis (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.231,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: sales_analysis -> SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2..."
+        },
+        {
+          "ts": 1791029464.231,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT product, category, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.262,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.3,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.3,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_sales, ROUND(SUM(cost), 2) AS total_cost, ROUND(SUM(profit), 2) AS total_profit, ROUND((SUM(profit) / MAX(SUM(sales), 1.0)) * 100, 2) AS profit_margin_pct FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_profit DESC LIMIT 90;"
+        },
+        {
+          "ts": 1791029464.301,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 21 rows."
+        },
+        {
+          "ts": 1791029464.301,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 21"
+        },
+        {
+          "ts": 1791029464.341,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.346,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.402,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.402,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 21 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.405,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: sales_analysis (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.405,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AUDIT-02",
+      "mission_name": "Phantom SKU & Referential Integrity Gap",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 18,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 4,
+          "score": 40,
+          "detail": "4 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 4,
+          "score": 20,
+          "detail": "4 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "HIGH",
+          "score": 50,
+          "detail": "Base: HIGH"
+        }
+      },
+      "sql": "SELECT city, COUNT(transaction_id) AS num_transactions, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_revenue, ROUND(SUM(profit), 2) AS total_profit FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY city ORDER BY total_revenue DESC;",
+      "data_count": 4,
+      "results": [
+        {
+          "city": "Mysuru",
+          "num_transactions": 18,
+          "total_units_sold": 66,
+          "total_revenue": 177753.0,
+          "total_profit": 51288.96
+        },
+        {
+          "city": "Bengaluru",
+          "num_transactions": 14,
+          "total_units_sold": 59,
+          "total_revenue": 133285.0,
+          "total_profit": 44405.95
+        },
+        {
+          "city": "Mangalore",
+          "num_transactions": 9,
+          "total_units_sold": 43,
+          "total_revenue": 131535.0,
+          "total_profit": 44418.15
+        },
+        {
+          "city": "Udupi",
+          "num_transactions": 11,
+          "total_units_sold": 45,
+          "total_revenue": 63308.0,
+          "total_profit": 22067.51
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "bar",
+        "title": "num_transactions by city",
+        "x_axis_key": "city",
+        "y_axis_key": "num_transactions",
+        "label": "num_transactions",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "Sales analysis reveals 4 records in the dataset. Leading entity: 'Mysuru' with 66 units/transactions generating \u20b9177,753.00 in revenue. Total cumulative sales: \u20b9505,881.00 (213 total units).",
+      "recommendation": "1. Ensure adequate inventory for 'Mysuru' to maintain sales velocity.\n2. Replicate successful merchandising and channel strategies across other segments.\n3. Monitor conversion and velocity trends across all retail outlets.",
+      "original_query": "Which SKUs appear in inventory or sales_events but have no matching sku in products, and conversely which SKUs in products have no inventory record at any location or have sales_events with supplier_id missing, indicating data integrity or fulfillment blind spots?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.122,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.122,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'Which SKUs appear in inventory or sales_events but have no matching sku in products, and conversely which SKUs in products have no inventory record at any location or have sales_events with supplier_id missing, indicating data integrity or fulfillment blind spots?'"
+        },
+        {
+          "ts": 1791029464.123,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: sales_analysis (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.123,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=sales_analysis, workflow=SELECT, conf=0.900, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.207,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.9) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.233,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.233,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: Which SKUs appear in inventory or sales_events but have no matching sku in products, and conversely which SKUs in products have no inventory record at any location or have sales_events with supplier_id missing, indicating data integrity or fulfillment blind spots?"
+        },
+        {
+          "ts": 1791029464.234,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: sales_analysis (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.235,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: sales_analysis -> SQL: SELECT city, COUNT(transaction_id) AS num_transactions, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.235,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT city, COUNT(transaction_id) AS num_transact..."
+        },
+        {
+          "ts": 1791029464.264,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.298,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.299,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT city, COUNT(transaction_id) AS num_transactions, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_revenue, ROUND(SUM(profit), 2) AS total_profit FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY city ORDER BY total_revenue DESC;"
+        },
+        {
+          "ts": 1791029464.299,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 4 rows."
+        },
+        {
+          "ts": 1791029464.3,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 4"
+        },
+        {
+          "ts": 1791029464.337,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.341,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.399,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.399,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 4 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.401,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: sales_analysis (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.402,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AUDIT-03",
+      "mission_name": "Days-of-Cover vs Lead Time Stockout Forecast",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 18,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 2,
+          "score": 20,
+          "detail": "2 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 2,
+          "score": 10,
+          "detail": "2 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "CRITICAL",
+          "score": 80,
+          "detail": "Base: CRITICAL"
+        }
+      },
+      "sql": "SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_id) AS sales_frequency, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(sales), 2) AS avg_sale_value, 'High Sales Velocity' AS velocity_status FROM shop_sales WHERE UPPER(product) LIKE '%AND%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 30;",
+      "data_count": 2,
+      "results": [
+        {
+          "product": "Resistance Band",
+          "category": "Sports",
+          "total_units_sold": 9,
+          "sales_frequency": 2,
+          "total_revenue": 39456.0,
+          "avg_sale_value": 19728.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sandals",
+          "category": "Footwear",
+          "total_units_sold": 2,
+          "sales_frequency": 1,
+          "total_revenue": 3732.0,
+          "avg_sale_value": 3732.0,
+          "velocity_status": "High Sales Velocity"
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "line",
+        "title": "total_units_sold by category",
+        "x_axis_key": "category",
+        "y_axis_key": "total_units_sold",
+        "label": "total_units_sold",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "Identified 2 high-velocity products in the live dataset. Top in demand: Resistance Band (9 units); Sandals (2 units). 'Resistance Band' leads demand with 9 units sold and requires proactive inventory monitoring.",
+      "recommendation": "1. Ensure adequate inventory buffer for top high-velocity products (Resistance Band).\n2. Monitor real-time sales rates across top selling categories.\n3. Maintain supplier reorder cadences to prevent out-of-stock events.",
+      "original_query": "For each sku and location, calculate daily velocity as total units_sold last 30 days / 30, then compute days_of_cover = stock_count / daily velocity; which SKUs have days_of_cover < suppliers.lead_time_days and daily velocity in top 30% of category, indicating imminent stockout before resupply can arrive?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.123,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.123,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'For each sku and location, calculate daily velocity as total units_sold last 30 days / 30, then compute days_of_cover = stock_count / daily velocity; which SKUs have days_of_cover < suppliers.lead_time_days and daily velocity in top 30% of category, indicating imminent stockout before resupply can arrive?'"
+        },
+        {
+          "ts": 1791029464.124,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.124,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=stockout_risk, workflow=SELECT, conf=0.900, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.207,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.9) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.232,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.232,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: For each sku and location, calculate daily velocity as total units_sold last 30 days / 30, then compute days_of_cover = stock_count / daily velocity; which SKUs have days_of_cover < suppliers.lead_time_days and daily velocity in top 30% of category, indicating imminent stockout before resupply can arrive?"
+        },
+        {
+          "ts": 1791029464.232,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.233,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: stockout_risk -> SQL: SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_i..."
+        },
+        {
+          "ts": 1791029464.233,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT product, category, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.267,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.296,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.296,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_id) AS sales_frequency, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(sales), 2) AS avg_sale_value, 'High Sales Velocity' AS velocity_status FROM shop_sales WHERE UPPER(product) LIKE '%AND%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 30;"
+        },
+        {
+          "ts": 1791029464.297,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 2 rows."
+        },
+        {
+          "ts": 1791029464.297,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 2"
+        },
+        {
+          "ts": 1791029464.326,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.331,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.39,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.39,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 2 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.395,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.396,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AUDIT-04",
+      "mission_name": "Reorder Point Calibration Failure",
+      "domain": "retail_clothing",
+      "severity": "MEDIUM",
+      "risk_score": 42,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 21,
+          "score": 100,
+          "detail": "21 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 21,
+          "score": 100,
+          "detail": "21 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "HIGH",
+          "score": 50,
+          "detail": "Base: HIGH"
+        }
+      },
+      "sql": "SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(quantity), 1) AS avg_units_per_order, ROUND(SUM(quantity) * 1.5) AS recommended_restock_units FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 90;",
+      "data_count": 21,
+      "results": [
+        {
+          "product": "Biscuits",
+          "category": "Grocery",
+          "total_units_sold": 30,
+          "total_revenue": 19151.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 45.0
+        },
+        {
+          "product": "Mouse",
+          "category": "Electronics",
+          "total_units_sold": 28,
+          "total_revenue": 133919.0,
+          "avg_units_per_order": 4.0,
+          "recommended_restock_units": 42.0
+        },
+        {
+          "product": "Sugar",
+          "category": "Grocery",
+          "total_units_sold": 23,
+          "total_revenue": 13246.0,
+          "avg_units_per_order": 5.8,
+          "recommended_restock_units": 35.0
+        },
+        {
+          "product": "Shirt",
+          "category": "Clothing",
+          "total_units_sold": 20,
+          "total_revenue": 26471.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 30.0
+        },
+        {
+          "product": "T-Shirt",
+          "category": "Clothing",
+          "total_units_sold": 17,
+          "total_revenue": 21417.0,
+          "avg_units_per_order": 5.7,
+          "recommended_restock_units": 26.0
+        },
+        {
+          "product": "Earphones",
+          "category": "Electronics",
+          "total_units_sold": 15,
+          "total_revenue": 75812.0,
+          "avg_units_per_order": 7.5,
+          "recommended_restock_units": 23.0
+        },
+        {
+          "product": "Sunscreen",
+          "category": "Cosmetics",
+          "total_units_sold": 13,
+          "total_revenue": 22041.0,
+          "avg_units_per_order": 6.5,
+          "recommended_restock_units": 20.0
+        },
+        {
+          "product": "Resistance Band",
+          "category": "Sports",
+          "total_units_sold": 9,
+          "total_revenue": 39456.0,
+          "avg_units_per_order": 4.5,
+          "recommended_restock_units": 14.0
+        },
+        {
+          "product": "Formal Shoes",
+          "category": "Footwear",
+          "total_units_sold": 8,
+          "total_revenue": 21196.0,
+          "avg_units_per_order": 4.0,
+          "recommended_restock_units": 12.0
+        },
+        {
+          "product": "Dumbbells",
+          "category": "Sports",
+          "total_units_sold": 7,
+          "total_revenue": 28061.0,
+          "avg_units_per_order": 2.3,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Jeans",
+          "category": "Clothing",
+          "total_units_sold": 7,
+          "total_revenue": 10512.0,
+          "avg_units_per_order": 3.5,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Slippers",
+          "category": "Footwear",
+          "total_units_sold": 7,
+          "total_revenue": 9619.0,
+          "avg_units_per_order": 3.5,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Smart Watch",
+          "category": "Electronics",
+          "total_units_sold": 7,
+          "total_revenue": 24780.0,
+          "avg_units_per_order": 1.8,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Moisturizer",
+          "category": "Cosmetics",
+          "total_units_sold": 6,
+          "total_revenue": 9465.0,
+          "avg_units_per_order": 3.0,
+          "recommended_restock_units": 9.0
+        },
+        {
+          "product": "Sofa",
+          "category": "Furniture",
+          "total_units_sold": 5,
+          "total_revenue": 11660.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 8.0
+        },
+        {
+          "product": "Sneakers",
+          "category": "Footwear",
+          "total_units_sold": 4,
+          "total_revenue": 10492.0,
+          "avg_units_per_order": 4.0,
+          "recommended_restock_units": 6.0
+        },
+        {
+          "product": "Sandals",
+          "category": "Footwear",
+          "total_units_sold": 2,
+          "total_revenue": 3732.0,
+          "avg_units_per_order": 2.0,
+          "recommended_restock_units": 3.0
+        },
+        {
+          "product": "Shampoo",
+          "category": "Cosmetics",
+          "total_units_sold": 2,
+          "total_revenue": 3698.0,
+          "avg_units_per_order": 2.0,
+          "recommended_restock_units": 3.0
+        },
+        {
+          "product": "Shelf",
+          "category": "Furniture",
+          "total_units_sold": 1,
+          "total_revenue": 8382.0,
+          "avg_units_per_order": 1.0,
+          "recommended_restock_units": 2.0
+        },
+        {
+          "product": "Skipping Rope",
+          "category": "Sports",
+          "total_units_sold": 1,
+          "total_revenue": 2076.0,
+          "avg_units_per_order": 1.0,
+          "recommended_restock_units": 2.0
+        },
+        {
+          "product": "Study Table",
+          "category": "Furniture",
+          "total_units_sold": 1,
+          "total_revenue": 10695.0,
+          "avg_units_per_order": 1.0,
+          "recommended_restock_units": 2.0
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "line",
+        "title": "total_units_sold by category",
+        "x_axis_key": "category",
+        "y_axis_key": "total_units_sold",
+        "label": "total_units_sold",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "21 products require immediate replenishment. Total recommended reorder volume: 0 units. Timely reordering prevents lost sales.",
+      "recommendation": "1. Approve purchase orders for all 21 items requiring replenishment.\n2. Prioritize items with the highest demand velocity.\n3. Consolidate supplier orders to optimize bulk freight costs.",
+      "original_query": "Which SKUs have reorder_point drastically misaligned with actual demand \u2014 either reorder_point > 3x average monthly units_sold last 90 days (over-reorder trap) or reorder_point < 0.5 * (avg daily units_sold * suppliers.lead_time_days) (under-protected) \u2014 grouped by supplier and location?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.124,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.124,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'Which SKUs have reorder_point drastically misaligned with actual demand \u2014 either reorder_point > 3x average monthly units_sold last 90 days (over-reorder trap) or reorder_point < 0.5 * (avg daily units_sold * suppliers.lead_time_days) (under-protected) \u2014 grouped by supplier and location?'"
+        },
+        {
+          "ts": 1791029464.127,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: reorder_recommendation (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.127,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=reorder_recommendation, workflow=SELECT, conf=0.900, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.207,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.9) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.235,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.235,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: Which SKUs have reorder_point drastically misaligned with actual demand \u2014 either reorder_point > 3x average monthly units_sold last 90 days (over-reorder trap) or reorder_point < 0.5 * (avg daily units_sold * suppliers.lead_time_days) (under-protected) \u2014 grouped by supplier and location?"
+        },
+        {
+          "ts": 1791029464.236,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: reorder_recommendation (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.237,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: reorder_recommendation -> SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2..."
+        },
+        {
+          "ts": 1791029464.237,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT product, category, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.268,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.297,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.297,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(quantity), 1) AS avg_units_per_order, ROUND(SUM(quantity) * 1.5) AS recommended_restock_units FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 90;"
+        },
+        {
+          "ts": 1791029464.298,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 21 rows."
+        },
+        {
+          "ts": 1791029464.298,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 21"
+        },
+        {
+          "ts": 1791029464.331,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.336,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.396,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.396,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 21 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.398,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: reorder_recommendation (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.399,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AUDIT-05",
+      "mission_name": "New Launch Failure Detection",
+      "domain": "retail_clothing",
+      "severity": "MEDIUM",
+      "risk_score": 37,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 13,
+          "score": 100,
+          "detail": "13 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 13,
+          "score": 65,
+          "detail": "13 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "HIGH",
+          "score": 50,
+          "detail": "Base: HIGH"
+        }
+      },
+      "sql": "SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(quantity), 1) AS avg_units_per_order, ROUND(SUM(quantity) * 1.5) AS recommended_restock_units FROM shop_sales WHERE UPPER(product) LIKE '%S%' AND UPPER(customer_type) = 'NEW' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 60;",
+      "data_count": 13,
+      "results": [
+        {
+          "product": "Mouse",
+          "category": "Electronics",
+          "total_units_sold": 18,
+          "total_revenue": 70223.0,
+          "avg_units_per_order": 4.5,
+          "recommended_restock_units": 27.0
+        },
+        {
+          "product": "Biscuits",
+          "category": "Grocery",
+          "total_units_sold": 15,
+          "total_revenue": 8856.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 23.0
+        },
+        {
+          "product": "T-Shirt",
+          "category": "Clothing",
+          "total_units_sold": 15,
+          "total_revenue": 19365.0,
+          "avg_units_per_order": 7.5,
+          "recommended_restock_units": 23.0
+        },
+        {
+          "product": "Shirt",
+          "category": "Clothing",
+          "total_units_sold": 13,
+          "total_revenue": 19142.0,
+          "avg_units_per_order": 4.3,
+          "recommended_restock_units": 20.0
+        },
+        {
+          "product": "Sugar",
+          "category": "Grocery",
+          "total_units_sold": 13,
+          "total_revenue": 6448.0,
+          "avg_units_per_order": 6.5,
+          "recommended_restock_units": 20.0
+        },
+        {
+          "product": "Dumbbells",
+          "category": "Sports",
+          "total_units_sold": 7,
+          "total_revenue": 28061.0,
+          "avg_units_per_order": 2.3,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Jeans",
+          "category": "Clothing",
+          "total_units_sold": 7,
+          "total_revenue": 10512.0,
+          "avg_units_per_order": 3.5,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Moisturizer",
+          "category": "Cosmetics",
+          "total_units_sold": 6,
+          "total_revenue": 9465.0,
+          "avg_units_per_order": 3.0,
+          "recommended_restock_units": 9.0
+        },
+        {
+          "product": "Smart Watch",
+          "category": "Electronics",
+          "total_units_sold": 6,
+          "total_revenue": 21082.0,
+          "avg_units_per_order": 2.0,
+          "recommended_restock_units": 9.0
+        },
+        {
+          "product": "Slippers",
+          "category": "Footwear",
+          "total_units_sold": 5,
+          "total_revenue": 3175.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 8.0
+        },
+        {
+          "product": "Sofa",
+          "category": "Furniture",
+          "total_units_sold": 5,
+          "total_revenue": 11660.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 8.0
+        },
+        {
+          "product": "Resistance Band",
+          "category": "Sports",
+          "total_units_sold": 2,
+          "total_revenue": 7312.0,
+          "avg_units_per_order": 2.0,
+          "recommended_restock_units": 3.0
+        },
+        {
+          "product": "Sandals",
+          "category": "Footwear",
+          "total_units_sold": 2,
+          "total_revenue": 3732.0,
+          "avg_units_per_order": 2.0,
+          "recommended_restock_units": 3.0
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "line",
+        "title": "total_units_sold by category",
+        "x_axis_key": "category",
+        "y_axis_key": "total_units_sold",
+        "label": "total_units_sold",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "13 products require immediate replenishment. Total recommended reorder volume: 0 units. Timely reordering prevents lost sales.",
+      "recommendation": "1. Approve purchase orders for all 13 items requiring replenishment.\n2. Prioritize items with the highest demand velocity.\n3. Consolidate supplier orders to optimize bulk freight costs.",
+      "original_query": "Which products with created_at within the last 60 days have total units_sold in sales_events in the bottom 10th percentile of all SKUs or zero sales, despite having stock_count > reorder_point at all locations, indicating failed new style introduction?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.127,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.127,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'Which products with created_at within the last 60 days have total units_sold in sales_events in the bottom 10th percentile of all SKUs or zero sales, despite having stock_count > reorder_point at all locations, indicating failed new style introduction?'"
+        },
+        {
+          "ts": 1791029464.128,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: login_events (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.128,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=login_events, workflow=SELECT, conf=0.900, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.207,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.9) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.224,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.224,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: Which products with created_at within the last 60 days have total units_sold in sales_events in the bottom 10th percentile of all SKUs or zero sales, despite having stock_count > reorder_point at all locations, indicating failed new style introduction?"
+        },
+        {
+          "ts": 1791029464.225,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: login_events (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.226,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: login_events -> SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2..."
+        },
+        {
+          "ts": 1791029464.227,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT product, category, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.256,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.288,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.288,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(quantity), 1) AS avg_units_per_order, ROUND(SUM(quantity) * 1.5) AS recommended_restock_units FROM shop_sales WHERE UPPER(product) LIKE '%S%' AND UPPER(customer_type) = 'NEW' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 60;"
+        },
+        {
+          "ts": 1791029464.29,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 13 rows."
+        },
+        {
+          "ts": 1791029464.29,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 13"
+        },
+        {
+          "ts": 1791029464.306,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.313,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.367,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.367,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 13 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.369,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: login_events (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.37,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AUDIT-06",
+      "mission_name": "Color Variant Collapse Within Style",
+      "domain": "retail_clothing",
+      "severity": "MEDIUM",
+      "risk_score": 39,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 36,
+          "score": 100,
+          "detail": "36 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 36,
+          "score": 100,
+          "detail": "36 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "MEDIUM",
+          "score": 25,
+          "detail": "Base: MEDIUM"
+        }
+      },
+      "sql": "SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_sales, ROUND(SUM(cost), 2) AS total_cost, ROUND(SUM(profit), 2) AS total_profit, ROUND((SUM(profit) / MAX(SUM(sales), 1.0)) * 100, 2) AS profit_margin_pct FROM shop_sales GROUP BY product, category ORDER BY total_profit DESC LIMIT 60;",
+      "data_count": 36,
+      "results": [
+        {
+          "product": "Mouse",
+          "category": "Electronics",
+          "total_units_sold": 28,
+          "total_sales": 133919.0,
+          "total_cost": 94422.65,
+          "total_profit": 39496.35,
+          "profit_margin_pct": 29.49
+        },
+        {
+          "product": "Earphones",
+          "category": "Electronics",
+          "total_units_sold": 15,
+          "total_sales": 75812.0,
+          "total_cost": 47703.39,
+          "total_profit": 28108.61,
+          "profit_margin_pct": 37.08
+        },
+        {
+          "product": "Resistance Band",
+          "category": "Sports",
+          "total_units_sold": 9,
+          "total_sales": 39456.0,
+          "total_cost": 24637.56,
+          "total_profit": 14818.44,
+          "profit_margin_pct": 37.56
+        },
+        {
+          "product": "Power Bank",
+          "category": "Electronics",
+          "total_units_sold": 11,
+          "total_sales": 32691.0,
+          "total_cost": 20366.42,
+          "total_profit": 12324.58,
+          "profit_margin_pct": 37.7
+        },
+        {
+          "product": "Chair",
+          "category": "Furniture",
+          "total_units_sold": 11,
+          "total_sales": 50339.0,
+          "total_cost": 38045.74,
+          "total_profit": 12293.26,
+          "profit_margin_pct": 24.42
+        },
+        {
+          "product": "Table",
+          "category": "Furniture",
+          "total_units_sold": 4,
+          "total_sales": 34396.0,
+          "total_cost": 22931.21,
+          "total_profit": 11464.79,
+          "profit_margin_pct": 33.33
+        },
+        {
+          "product": "Jacket",
+          "category": "Clothing",
+          "total_units_sold": 22,
+          "total_sales": 27191.0,
+          "total_cost": 16053.25,
+          "total_profit": 11137.75,
+          "profit_margin_pct": 40.96
+        },
+        {
+          "product": "Lip Balm",
+          "category": "Cosmetics",
+          "total_units_sold": 17,
+          "total_sales": 32447.0,
+          "total_cost": 22756.39,
+          "total_profit": 9690.61,
+          "profit_margin_pct": 29.87
+        },
+        {
+          "product": "Keyboard",
+          "category": "Electronics",
+          "total_units_sold": 12,
+          "total_sales": 38078.0,
+          "total_cost": 29076.46,
+          "total_profit": 9001.54,
+          "profit_margin_pct": 23.64
+        },
+        {
+          "product": "Shirt",
+          "category": "Clothing",
+          "total_units_sold": 20,
+          "total_sales": 26471.0,
+          "total_cost": 18016.38,
+          "total_profit": 8454.62,
+          "profit_margin_pct": 31.94
+        },
+        {
+          "product": "Dumbbells",
+          "category": "Sports",
+          "total_units_sold": 7,
+          "total_sales": 28061.0,
+          "total_cost": 20246.52,
+          "total_profit": 7814.48,
+          "profit_margin_pct": 27.85
+        },
+        {
+          "product": "T-Shirt",
+          "category": "Clothing",
+          "total_units_sold": 17,
+          "total_sales": 21417.0,
+          "total_cost": 13696.35,
+          "total_profit": 7720.65,
+          "profit_margin_pct": 36.05
+        },
+        {
+          "product": "Oil",
+          "category": "Grocery",
+          "total_units_sold": 42,
+          "total_sales": 25961.0,
+          "total_cost": 18419.94,
+          "total_profit": 7541.06,
+          "profit_margin_pct": 29.05
+        },
+        {
+          "product": "Kurta",
+          "category": "Clothing",
+          "total_units_sold": 12,
+          "total_sales": 19796.0,
+          "total_cost": 12864.07,
+          "total_profit": 6931.93,
+          "profit_margin_pct": 35.02
+        },
+        {
+          "product": "Sunscreen",
+          "category": "Cosmetics",
+          "total_units_sold": 13,
+          "total_sales": 22041.0,
+          "total_cost": 15155.35,
+          "total_profit": 6885.65,
+          "profit_margin_pct": 31.24
+        },
+        {
+          "product": "Formal Shoes",
+          "category": "Footwear",
+          "total_units_sold": 8,
+          "total_sales": 21196.0,
+          "total_cost": 14605.4,
+          "total_profit": 6590.6,
+          "profit_margin_pct": 31.09
+        },
+        {
+          "product": "Smart Watch",
+          "category": "Electronics",
+          "total_units_sold": 7,
+          "total_sales": 24780.0,
+          "total_cost": 18195.37,
+          "total_profit": 6584.63,
+          "profit_margin_pct": 26.57
+        },
+        {
+          "product": "Biscuits",
+          "category": "Grocery",
+          "total_units_sold": 30,
+          "total_sales": 19151.0,
+          "total_cost": 13241.62,
+          "total_profit": 5909.38,
+          "profit_margin_pct": 30.86
+        },
+        {
+          "product": "Sofa",
+          "category": "Furniture",
+          "total_units_sold": 5,
+          "total_sales": 11660.0,
+          "total_cost": 6703.57,
+          "total_profit": 4956.43,
+          "profit_margin_pct": 42.51
+        },
+        {
+          "product": "Cricket Bat",
+          "category": "Sports",
+          "total_units_sold": 3,
+          "total_sales": 11301.0,
+          "total_cost": 6752.99,
+          "total_profit": 4548.01,
+          "profit_margin_pct": 40.24
+        },
+        {
+          "product": "Study Table",
+          "category": "Furniture",
+          "total_units_sold": 1,
+          "total_sales": 10695.0,
+          "total_cost": 6456.42,
+          "total_profit": 4238.58,
+          "profit_margin_pct": 39.63
+        },
+        {
+          "product": "Sugar",
+          "category": "Grocery",
+          "total_units_sold": 23,
+          "total_sales": 13246.0,
+          "total_cost": 9153.44,
+          "total_profit": 4092.56,
+          "profit_margin_pct": 30.9
+        },
+        {
+          "product": "Planner",
+          "category": "Books",
+          "total_units_sold": 12,
+          "total_sales": 10620.0,
+          "total_cost": 6835.04,
+          "total_profit": 3784.96,
+          "profit_margin_pct": 35.64
+        },
+        {
+          "product": "Milk",
+          "category": "Grocery",
+          "total_units_sold": 20,
+          "total_sales": 10479.0,
+          "total_cost": 6793.68,
+          "total_profit": 3685.32,
+          "profit_margin_pct": 35.17
+        },
+        {
+          "product": "Rice",
+          "category": "Grocery",
+          "total_units_sold": 18,
+          "total_sales": 10172.0,
+          "total_cost": 6578.43,
+          "total_profit": 3593.57,
+          "profit_margin_pct": 35.33
+        },
+        {
+          "product": "Slippers",
+          "category": "Footwear",
+          "total_units_sold": 7,
+          "total_sales": 9619.0,
+          "total_cost": 6190.75,
+          "total_profit": 3428.25,
+          "profit_margin_pct": 35.64
+        },
+        {
+          "product": "Moisturizer",
+          "category": "Cosmetics",
+          "total_units_sold": 6,
+          "total_sales": 9465.0,
+          "total_cost": 6064.05,
+          "total_profit": 3400.95,
+          "profit_margin_pct": 35.93
+        },
+        {
+          "product": "Jeans",
+          "category": "Clothing",
+          "total_units_sold": 7,
+          "total_sales": 10512.0,
+          "total_cost": 7512.51,
+          "total_profit": 2999.49,
+          "profit_margin_pct": 28.53
+        },
+        {
+          "product": "Sneakers",
+          "category": "Footwear",
+          "total_units_sold": 4,
+          "total_sales": 10492.0,
+          "total_cost": 8253.21,
+          "total_profit": 2238.79,
+          "profit_margin_pct": 21.34
+        },
+        {
+          "product": "Shelf",
+          "category": "Furniture",
+          "total_units_sold": 1,
+          "total_sales": 8382.0,
+          "total_cost": 6471.15,
+          "total_profit": 1910.85,
+          "profit_margin_pct": 22.8
+        },
+        {
+          "product": "Notebook",
+          "category": "Books",
+          "total_units_sold": 7,
+          "total_sales": 6167.0,
+          "total_cost": 4384.06,
+          "total_profit": 1782.94,
+          "profit_margin_pct": 28.91
+        },
+        {
+          "product": "Shampoo",
+          "category": "Cosmetics",
+          "total_units_sold": 2,
+          "total_sales": 3698.0,
+          "total_cost": 2440.87,
+          "total_profit": 1257.13,
+          "profit_margin_pct": 33.99
+        },
+        {
+          "product": "Textbook",
+          "category": "Books",
+          "total_units_sold": 10,
+          "total_sales": 3850.0,
+          "total_cost": 2858.55,
+          "total_profit": 991.45,
+          "profit_margin_pct": 25.75
+        },
+        {
+          "product": "Sandals",
+          "category": "Footwear",
+          "total_units_sold": 2,
+          "total_sales": 3732.0,
+          "total_cost": 2931.43,
+          "total_profit": 800.57,
+          "profit_margin_pct": 21.45
+        },
+        {
+          "product": "Skipping Rope",
+          "category": "Sports",
+          "total_units_sold": 1,
+          "total_sales": 2076.0,
+          "total_cost": 1602.44,
+          "total_profit": 473.56,
+          "profit_margin_pct": 22.81
+        },
+        {
+          "product": "Novel",
+          "category": "Books",
+          "total_units_sold": 8,
+          "total_sales": 1112.0,
+          "total_cost": 645.19,
+          "total_profit": 466.81,
+          "profit_margin_pct": 41.98
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "line",
+        "title": "total_units_sold by category",
+        "x_axis_key": "category",
+        "y_axis_key": "total_units_sold",
+        "label": "total_units_sold",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "Profit analysis across 36 items. Top contributor: 'Mouse' generating \u20b939,496.35 in net profit (29.49% margin). Total profit: \u20b9261,419.15 on total sales of \u20b9820,481.00.",
+      "recommendation": "1. Promote high-margin items like 'Mouse' to maximize total gross margin.\n2. Review cost structures for low-margin products.\n3. Optimize procurement pricing with suppliers for top profit generators.",
+      "original_query": "Within each style_name, which specific color has total units_sold last 60 days = 0 or <15% of the style's average color sales, while at least two sibling colors of the same style rank in top 50% of category sales, and what is its stranded stock_count and unit_cost?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.128,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.128,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'Within each style_name, which specific color has total units_sold last 60 days = 0 or <15% of the style's average color sales, while at least two sibling colors of the same style rank in top 50% of category sales, and what is its stranded stock_count and unit_cost?'"
+        },
+        {
+          "ts": 1791029464.129,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: sales_analysis (conf: 0.430) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.129,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=sales_analysis, workflow=SELECT, conf=0.430, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.207,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.43000694403471584) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.237,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.237,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: Within each style_name, which specific color has total units_sold last 60 days = 0 or <15% of the style's average color sales, while at least two sibling colors of the same style rank in top 50% of category sales, and what is its stranded stock_count and unit_cost?"
+        },
+        {
+          "ts": 1791029464.238,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: sales_analysis (conf: 0.430) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.239,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: sales_analysis -> SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2..."
+        },
+        {
+          "ts": 1791029464.239,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT product, category, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.265,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.294,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.294,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_sales, ROUND(SUM(cost), 2) AS total_cost, ROUND(SUM(profit), 2) AS total_profit, ROUND((SUM(profit) / MAX(SUM(sales), 1.0)) * 100, 2) AS profit_margin_pct FROM shop_sales GROUP BY product, category ORDER BY total_profit DESC LIMIT 60;"
+        },
+        {
+          "ts": 1791029464.296,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 36 rows."
+        },
+        {
+          "ts": 1791029464.296,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 36"
+        },
+        {
+          "ts": 1791029464.32,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.325,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.387,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.388,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 36 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.39,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: sales_analysis (conf: 0.430) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.39,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AUDIT-07",
+      "mission_name": "High-Value Stranded Capital Risk",
+      "domain": "retail_clothing",
+      "severity": "MEDIUM",
+      "risk_score": 47,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 20,
+          "score": 100,
+          "detail": "20 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 20,
+          "score": 100,
+          "detail": "20 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "CRITICAL",
+          "score": 80,
+          "detail": "Base: CRITICAL"
+        }
+      },
+      "sql": "SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(quantity), 1) AS avg_units_per_order, ROUND(SUM(quantity) * 1.5) AS recommended_restock_units FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 20;",
+      "data_count": 20,
+      "results": [
+        {
+          "product": "Biscuits",
+          "category": "Grocery",
+          "total_units_sold": 30,
+          "total_revenue": 19151.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 45.0
+        },
+        {
+          "product": "Mouse",
+          "category": "Electronics",
+          "total_units_sold": 28,
+          "total_revenue": 133919.0,
+          "avg_units_per_order": 4.0,
+          "recommended_restock_units": 42.0
+        },
+        {
+          "product": "Sugar",
+          "category": "Grocery",
+          "total_units_sold": 23,
+          "total_revenue": 13246.0,
+          "avg_units_per_order": 5.8,
+          "recommended_restock_units": 35.0
+        },
+        {
+          "product": "Shirt",
+          "category": "Clothing",
+          "total_units_sold": 20,
+          "total_revenue": 26471.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 30.0
+        },
+        {
+          "product": "T-Shirt",
+          "category": "Clothing",
+          "total_units_sold": 17,
+          "total_revenue": 21417.0,
+          "avg_units_per_order": 5.7,
+          "recommended_restock_units": 26.0
+        },
+        {
+          "product": "Earphones",
+          "category": "Electronics",
+          "total_units_sold": 15,
+          "total_revenue": 75812.0,
+          "avg_units_per_order": 7.5,
+          "recommended_restock_units": 23.0
+        },
+        {
+          "product": "Sunscreen",
+          "category": "Cosmetics",
+          "total_units_sold": 13,
+          "total_revenue": 22041.0,
+          "avg_units_per_order": 6.5,
+          "recommended_restock_units": 20.0
+        },
+        {
+          "product": "Resistance Band",
+          "category": "Sports",
+          "total_units_sold": 9,
+          "total_revenue": 39456.0,
+          "avg_units_per_order": 4.5,
+          "recommended_restock_units": 14.0
+        },
+        {
+          "product": "Formal Shoes",
+          "category": "Footwear",
+          "total_units_sold": 8,
+          "total_revenue": 21196.0,
+          "avg_units_per_order": 4.0,
+          "recommended_restock_units": 12.0
+        },
+        {
+          "product": "Dumbbells",
+          "category": "Sports",
+          "total_units_sold": 7,
+          "total_revenue": 28061.0,
+          "avg_units_per_order": 2.3,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Jeans",
+          "category": "Clothing",
+          "total_units_sold": 7,
+          "total_revenue": 10512.0,
+          "avg_units_per_order": 3.5,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Slippers",
+          "category": "Footwear",
+          "total_units_sold": 7,
+          "total_revenue": 9619.0,
+          "avg_units_per_order": 3.5,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Smart Watch",
+          "category": "Electronics",
+          "total_units_sold": 7,
+          "total_revenue": 24780.0,
+          "avg_units_per_order": 1.8,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Moisturizer",
+          "category": "Cosmetics",
+          "total_units_sold": 6,
+          "total_revenue": 9465.0,
+          "avg_units_per_order": 3.0,
+          "recommended_restock_units": 9.0
+        },
+        {
+          "product": "Sofa",
+          "category": "Furniture",
+          "total_units_sold": 5,
+          "total_revenue": 11660.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 8.0
+        },
+        {
+          "product": "Sneakers",
+          "category": "Footwear",
+          "total_units_sold": 4,
+          "total_revenue": 10492.0,
+          "avg_units_per_order": 4.0,
+          "recommended_restock_units": 6.0
+        },
+        {
+          "product": "Sandals",
+          "category": "Footwear",
+          "total_units_sold": 2,
+          "total_revenue": 3732.0,
+          "avg_units_per_order": 2.0,
+          "recommended_restock_units": 3.0
+        },
+        {
+          "product": "Shampoo",
+          "category": "Cosmetics",
+          "total_units_sold": 2,
+          "total_revenue": 3698.0,
+          "avg_units_per_order": 2.0,
+          "recommended_restock_units": 3.0
+        },
+        {
+          "product": "Shelf",
+          "category": "Furniture",
+          "total_units_sold": 1,
+          "total_revenue": 8382.0,
+          "avg_units_per_order": 1.0,
+          "recommended_restock_units": 2.0
+        },
+        {
+          "product": "Skipping Rope",
+          "category": "Sports",
+          "total_units_sold": 1,
+          "total_revenue": 2076.0,
+          "avg_units_per_order": 1.0,
+          "recommended_restock_units": 2.0
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "line",
+        "title": "total_units_sold by category",
+        "x_axis_key": "category",
+        "y_axis_key": "total_units_sold",
+        "label": "total_units_sold",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "20 products require immediate replenishment. Total recommended reorder volume: 0 units. Timely reordering prevents lost sales.",
+      "recommendation": "1. Approve purchase orders for all 20 items requiring replenishment.\n2. Prioritize items with the highest demand velocity.\n3. Consolidate supplier orders to optimize bulk freight costs.",
+      "original_query": "Which SKUs rank in the top 20% by total inventory value (SUM inventory.stock_count * products.unit_cost) but have inventory turnover (total units_sold last 90 days / total stock_count) < 0.15 and last_restocked_at > 60 days ago, representing high-cost capital locked in slow movers regardless of margin?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.129,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.129,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'Which SKUs rank in the top 20% by total inventory value (SUM inventory.stock_count * products.unit_cost) but have inventory turnover (total units_sold last 90 days / total stock_count) < 0.15 and last_restocked_at > 60 days ago, representing high-cost capital locked in slow movers regardless of margin?'"
+        },
+        {
+          "ts": 1791029464.13,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: reorder_recommendation (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.13,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=reorder_recommendation, workflow=SELECT, conf=0.900, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.221,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.9) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.24,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.24,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: Which SKUs rank in the top 20% by total inventory value (SUM inventory.stock_count * products.unit_cost) but have inventory turnover (total units_sold last 90 days / total stock_count) < 0.15 and last_restocked_at > 60 days ago, representing high-cost capital locked in slow movers regardless of margin?"
+        },
+        {
+          "ts": 1791029464.241,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: reorder_recommendation (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.243,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: reorder_recommendation -> SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2..."
+        },
+        {
+          "ts": 1791029464.243,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT product, category, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.271,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.303,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.304,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(quantity), 1) AS avg_units_per_order, ROUND(SUM(quantity) * 1.5) AS recommended_restock_units FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 20;"
+        },
+        {
+          "ts": 1791029464.305,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 20 rows."
+        },
+        {
+          "ts": 1791029464.305,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 20"
+        },
+        {
+          "ts": 1791029464.355,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.362,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.422,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.423,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 20 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.425,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: reorder_recommendation (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.428,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AUDIT-08",
+      "mission_name": "Location Polarization & Fulfillment Risk",
+      "domain": "retail_clothing",
+      "severity": "MEDIUM",
+      "risk_score": 35,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 15,
+          "score": 100,
+          "detail": "15 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 15,
+          "score": 75,
+          "detail": "15 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "MEDIUM",
+          "score": 25,
+          "detail": "Base: MEDIUM"
+        }
+      },
+      "sql": "SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(quantity), 1) AS avg_units_per_order, ROUND(SUM(quantity) * 1.5) AS recommended_restock_units FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 15;",
+      "data_count": 15,
+      "results": [
+        {
+          "product": "Biscuits",
+          "category": "Grocery",
+          "total_units_sold": 30,
+          "total_revenue": 19151.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 45.0
+        },
+        {
+          "product": "Mouse",
+          "category": "Electronics",
+          "total_units_sold": 28,
+          "total_revenue": 133919.0,
+          "avg_units_per_order": 4.0,
+          "recommended_restock_units": 42.0
+        },
+        {
+          "product": "Sugar",
+          "category": "Grocery",
+          "total_units_sold": 23,
+          "total_revenue": 13246.0,
+          "avg_units_per_order": 5.8,
+          "recommended_restock_units": 35.0
+        },
+        {
+          "product": "Shirt",
+          "category": "Clothing",
+          "total_units_sold": 20,
+          "total_revenue": 26471.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 30.0
+        },
+        {
+          "product": "T-Shirt",
+          "category": "Clothing",
+          "total_units_sold": 17,
+          "total_revenue": 21417.0,
+          "avg_units_per_order": 5.7,
+          "recommended_restock_units": 26.0
+        },
+        {
+          "product": "Earphones",
+          "category": "Electronics",
+          "total_units_sold": 15,
+          "total_revenue": 75812.0,
+          "avg_units_per_order": 7.5,
+          "recommended_restock_units": 23.0
+        },
+        {
+          "product": "Sunscreen",
+          "category": "Cosmetics",
+          "total_units_sold": 13,
+          "total_revenue": 22041.0,
+          "avg_units_per_order": 6.5,
+          "recommended_restock_units": 20.0
+        },
+        {
+          "product": "Resistance Band",
+          "category": "Sports",
+          "total_units_sold": 9,
+          "total_revenue": 39456.0,
+          "avg_units_per_order": 4.5,
+          "recommended_restock_units": 14.0
+        },
+        {
+          "product": "Formal Shoes",
+          "category": "Footwear",
+          "total_units_sold": 8,
+          "total_revenue": 21196.0,
+          "avg_units_per_order": 4.0,
+          "recommended_restock_units": 12.0
+        },
+        {
+          "product": "Dumbbells",
+          "category": "Sports",
+          "total_units_sold": 7,
+          "total_revenue": 28061.0,
+          "avg_units_per_order": 2.3,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Jeans",
+          "category": "Clothing",
+          "total_units_sold": 7,
+          "total_revenue": 10512.0,
+          "avg_units_per_order": 3.5,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Slippers",
+          "category": "Footwear",
+          "total_units_sold": 7,
+          "total_revenue": 9619.0,
+          "avg_units_per_order": 3.5,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Smart Watch",
+          "category": "Electronics",
+          "total_units_sold": 7,
+          "total_revenue": 24780.0,
+          "avg_units_per_order": 1.8,
+          "recommended_restock_units": 11.0
+        },
+        {
+          "product": "Moisturizer",
+          "category": "Cosmetics",
+          "total_units_sold": 6,
+          "total_revenue": 9465.0,
+          "avg_units_per_order": 3.0,
+          "recommended_restock_units": 9.0
+        },
+        {
+          "product": "Sofa",
+          "category": "Furniture",
+          "total_units_sold": 5,
+          "total_revenue": 11660.0,
+          "avg_units_per_order": 5.0,
+          "recommended_restock_units": 8.0
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "line",
+        "title": "total_units_sold by category",
+        "x_axis_key": "category",
+        "y_axis_key": "total_units_sold",
+        "label": "total_units_sold",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "15 products require immediate replenishment. Total recommended reorder volume: 0 units. Timely reordering prevents lost sales.",
+      "recommendation": "1. Approve purchase orders for all 15 items requiring replenishment.\n2. Prioritize items with the highest demand velocity.\n3. Consolidate supplier orders to optimize bulk freight costs.",
+      "original_query": "Which inventory locations have aggregate stock_count significantly skewed \u2014 either chronic overstock (avg stock_count per SKU > 2x global average for same SKUs) or chronic understock (frequent stock_count = 0 or < reorder_point) \u2014 and which categories are most polarized by location vs sales_events demand by channel?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.13,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.13,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'Which inventory locations have aggregate stock_count significantly skewed \u2014 either chronic overstock (avg stock_count per SKU > 2x global average for same SKUs) or chronic understock (frequent stock_count = 0 or < reorder_point) \u2014 and which categories are most polarized by location vs sales_events demand by channel?'"
+        },
+        {
+          "ts": 1791029464.131,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: reorder_recommendation (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.131,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=reorder_recommendation, workflow=SELECT, conf=0.900, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.222,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.9) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.247,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.247,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: Which inventory locations have aggregate stock_count significantly skewed \u2014 either chronic overstock (avg stock_count per SKU > 2x global average for same SKUs) or chronic understock (frequent stock_count = 0 or < reorder_point) \u2014 and which categories are most polarized by location vs sales_events demand by channel?"
+        },
+        {
+          "ts": 1791029464.248,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: reorder_recommendation (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.249,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: reorder_recommendation -> SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2..."
+        },
+        {
+          "ts": 1791029464.249,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT product, category, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.278,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.352,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.352,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT product, category, SUM(quantity) AS total_units_sold, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(quantity), 1) AS avg_units_per_order, ROUND(SUM(quantity) * 1.5) AS recommended_restock_units FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 15;"
+        },
+        {
+          "ts": 1791029464.353,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 15 rows."
+        },
+        {
+          "ts": 1791029464.353,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 15"
+        },
+        {
+          "ts": 1791029464.416,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.42,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.456,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.456,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 15 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.463,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: reorder_recommendation (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.464,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AUDIT-09",
+      "mission_name": "Aging Product Obsolescence Trend",
+      "domain": "retail_clothing",
+      "severity": "MEDIUM",
+      "risk_score": 42,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 30,
+          "score": 100,
+          "detail": "30 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 30,
+          "score": 100,
+          "detail": "30 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "HIGH",
+          "score": 50,
+          "detail": "Base: HIGH"
+        }
+      },
+      "sql": "SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_id) AS sales_frequency, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(sales), 2) AS avg_sale_value, 'High Sales Velocity' AS velocity_status FROM shop_sales GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 30;",
+      "data_count": 30,
+      "results": [
+        {
+          "product": "Oil",
+          "category": "Grocery",
+          "total_units_sold": 42,
+          "sales_frequency": 8,
+          "total_revenue": 25961.0,
+          "avg_sale_value": 3245.13,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Biscuits",
+          "category": "Grocery",
+          "total_units_sold": 30,
+          "sales_frequency": 6,
+          "total_revenue": 19151.0,
+          "avg_sale_value": 3191.83,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Mouse",
+          "category": "Electronics",
+          "total_units_sold": 28,
+          "sales_frequency": 7,
+          "total_revenue": 133919.0,
+          "avg_sale_value": 19131.29,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sugar",
+          "category": "Grocery",
+          "total_units_sold": 23,
+          "sales_frequency": 4,
+          "total_revenue": 13246.0,
+          "avg_sale_value": 3311.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Jacket",
+          "category": "Clothing",
+          "total_units_sold": 22,
+          "sales_frequency": 4,
+          "total_revenue": 27191.0,
+          "avg_sale_value": 6797.75,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Milk",
+          "category": "Grocery",
+          "total_units_sold": 20,
+          "sales_frequency": 6,
+          "total_revenue": 10479.0,
+          "avg_sale_value": 1746.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Shirt",
+          "category": "Clothing",
+          "total_units_sold": 20,
+          "sales_frequency": 4,
+          "total_revenue": 26471.0,
+          "avg_sale_value": 6617.75,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Rice",
+          "category": "Grocery",
+          "total_units_sold": 18,
+          "sales_frequency": 5,
+          "total_revenue": 10172.0,
+          "avg_sale_value": 2034.4,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Lip Balm",
+          "category": "Cosmetics",
+          "total_units_sold": 17,
+          "sales_frequency": 3,
+          "total_revenue": 32447.0,
+          "avg_sale_value": 10815.67,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "T-Shirt",
+          "category": "Clothing",
+          "total_units_sold": 17,
+          "sales_frequency": 3,
+          "total_revenue": 21417.0,
+          "avg_sale_value": 7139.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Earphones",
+          "category": "Electronics",
+          "total_units_sold": 15,
+          "sales_frequency": 2,
+          "total_revenue": 75812.0,
+          "avg_sale_value": 37906.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sunscreen",
+          "category": "Cosmetics",
+          "total_units_sold": 13,
+          "sales_frequency": 2,
+          "total_revenue": 22041.0,
+          "avg_sale_value": 11020.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Keyboard",
+          "category": "Electronics",
+          "total_units_sold": 12,
+          "sales_frequency": 4,
+          "total_revenue": 38078.0,
+          "avg_sale_value": 9519.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Kurta",
+          "category": "Clothing",
+          "total_units_sold": 12,
+          "sales_frequency": 2,
+          "total_revenue": 19796.0,
+          "avg_sale_value": 9898.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Planner",
+          "category": "Books",
+          "total_units_sold": 12,
+          "sales_frequency": 2,
+          "total_revenue": 10620.0,
+          "avg_sale_value": 5310.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Chair",
+          "category": "Furniture",
+          "total_units_sold": 11,
+          "sales_frequency": 3,
+          "total_revenue": 50339.0,
+          "avg_sale_value": 16779.67,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Power Bank",
+          "category": "Electronics",
+          "total_units_sold": 11,
+          "sales_frequency": 3,
+          "total_revenue": 32691.0,
+          "avg_sale_value": 10897.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Textbook",
+          "category": "Books",
+          "total_units_sold": 10,
+          "sales_frequency": 3,
+          "total_revenue": 3850.0,
+          "avg_sale_value": 1283.33,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Resistance Band",
+          "category": "Sports",
+          "total_units_sold": 9,
+          "sales_frequency": 2,
+          "total_revenue": 39456.0,
+          "avg_sale_value": 19728.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Formal Shoes",
+          "category": "Footwear",
+          "total_units_sold": 8,
+          "sales_frequency": 2,
+          "total_revenue": 21196.0,
+          "avg_sale_value": 10598.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Novel",
+          "category": "Books",
+          "total_units_sold": 8,
+          "sales_frequency": 1,
+          "total_revenue": 1112.0,
+          "avg_sale_value": 1112.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Dumbbells",
+          "category": "Sports",
+          "total_units_sold": 7,
+          "sales_frequency": 3,
+          "total_revenue": 28061.0,
+          "avg_sale_value": 9353.67,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Jeans",
+          "category": "Clothing",
+          "total_units_sold": 7,
+          "sales_frequency": 2,
+          "total_revenue": 10512.0,
+          "avg_sale_value": 5256.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Notebook",
+          "category": "Books",
+          "total_units_sold": 7,
+          "sales_frequency": 1,
+          "total_revenue": 6167.0,
+          "avg_sale_value": 6167.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Slippers",
+          "category": "Footwear",
+          "total_units_sold": 7,
+          "sales_frequency": 2,
+          "total_revenue": 9619.0,
+          "avg_sale_value": 4809.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Smart Watch",
+          "category": "Electronics",
+          "total_units_sold": 7,
+          "sales_frequency": 4,
+          "total_revenue": 24780.0,
+          "avg_sale_value": 6195.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Moisturizer",
+          "category": "Cosmetics",
+          "total_units_sold": 6,
+          "sales_frequency": 2,
+          "total_revenue": 9465.0,
+          "avg_sale_value": 4732.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sofa",
+          "category": "Furniture",
+          "total_units_sold": 5,
+          "sales_frequency": 1,
+          "total_revenue": 11660.0,
+          "avg_sale_value": 11660.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sneakers",
+          "category": "Footwear",
+          "total_units_sold": 4,
+          "sales_frequency": 1,
+          "total_revenue": 10492.0,
+          "avg_sale_value": 10492.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Table",
+          "category": "Furniture",
+          "total_units_sold": 4,
+          "sales_frequency": 2,
+          "total_revenue": 34396.0,
+          "avg_sale_value": 17198.0,
+          "velocity_status": "High Sales Velocity"
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "line",
+        "title": "total_units_sold by category",
+        "x_axis_key": "category",
+        "y_axis_key": "total_units_sold",
+        "label": "total_units_sold",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "Identified 30 high-velocity products in the live dataset. Top in demand: Oil (42 units); Biscuits (30 units); Mouse (28 units). 'Oil' leads demand with 42 units sold and requires proactive inventory monitoring.",
+      "recommendation": "1. Ensure adequate inventory buffer for top high-velocity products (Oil).\n2. Monitor real-time sales rates across top selling categories.\n3. Maintain supplier reorder cadences to prevent out-of-stock events.",
+      "original_query": "Which products with created_at > 180 days ago still hold total stock_count > 40 units across locations, but show a declining sales trend (units_sold last 30 days < 50% of units_sold 60-90 days ago), indicating obsolescence risk and potential markdown need?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.131,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.131,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'Which products with created_at > 180 days ago still hold total stock_count > 40 units across locations, but show a declining sales trend (units_sold last 30 days < 50% of units_sold 60-90 days ago), indicating obsolescence risk and potential markdown need?'"
+        },
+        {
+          "ts": 1791029464.132,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.132,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=stockout_risk, workflow=SELECT, conf=0.900, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.222,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.9) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.249,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.249,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: Which products with created_at > 180 days ago still hold total stock_count > 40 units across locations, but show a declining sales trend (units_sold last 30 days < 50% of units_sold 60-90 days ago), indicating obsolescence risk and potential markdown need?"
+        },
+        {
+          "ts": 1791029464.25,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.251,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: stockout_risk -> SQL: SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_i..."
+        },
+        {
+          "ts": 1791029464.251,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT product, category, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.28,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.35,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.35,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_id) AS sales_frequency, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(sales), 2) AS avg_sale_value, 'High Sales Velocity' AS velocity_status FROM shop_sales GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 30;"
+        },
+        {
+          "ts": 1791029464.351,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 30 rows."
+        },
+        {
+          "ts": 1791029464.352,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 30"
+        },
+        {
+          "ts": 1791029464.408,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.415,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.451,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.452,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 30 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.455,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.455,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AUDIT-10",
+      "mission_name": "Premium Supplier Reliability Mismatch",
+      "domain": "retail_clothing",
+      "severity": "MEDIUM",
+      "risk_score": 35,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 15,
+          "score": 100,
+          "detail": "15 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 15,
+          "score": 75,
+          "detail": "15 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "MEDIUM",
+          "score": 25,
+          "detail": "Base: MEDIUM"
+        }
+      },
+      "sql": "SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_id) AS sales_frequency, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(sales), 2) AS avg_sale_value, 'High Sales Velocity' AS velocity_status FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 15;",
+      "data_count": 15,
+      "results": [
+        {
+          "product": "Biscuits",
+          "category": "Grocery",
+          "total_units_sold": 30,
+          "sales_frequency": 6,
+          "total_revenue": 19151.0,
+          "avg_sale_value": 3191.83,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Mouse",
+          "category": "Electronics",
+          "total_units_sold": 28,
+          "sales_frequency": 7,
+          "total_revenue": 133919.0,
+          "avg_sale_value": 19131.29,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sugar",
+          "category": "Grocery",
+          "total_units_sold": 23,
+          "sales_frequency": 4,
+          "total_revenue": 13246.0,
+          "avg_sale_value": 3311.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Shirt",
+          "category": "Clothing",
+          "total_units_sold": 20,
+          "sales_frequency": 4,
+          "total_revenue": 26471.0,
+          "avg_sale_value": 6617.75,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "T-Shirt",
+          "category": "Clothing",
+          "total_units_sold": 17,
+          "sales_frequency": 3,
+          "total_revenue": 21417.0,
+          "avg_sale_value": 7139.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Earphones",
+          "category": "Electronics",
+          "total_units_sold": 15,
+          "sales_frequency": 2,
+          "total_revenue": 75812.0,
+          "avg_sale_value": 37906.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sunscreen",
+          "category": "Cosmetics",
+          "total_units_sold": 13,
+          "sales_frequency": 2,
+          "total_revenue": 22041.0,
+          "avg_sale_value": 11020.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Resistance Band",
+          "category": "Sports",
+          "total_units_sold": 9,
+          "sales_frequency": 2,
+          "total_revenue": 39456.0,
+          "avg_sale_value": 19728.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Formal Shoes",
+          "category": "Footwear",
+          "total_units_sold": 8,
+          "sales_frequency": 2,
+          "total_revenue": 21196.0,
+          "avg_sale_value": 10598.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Dumbbells",
+          "category": "Sports",
+          "total_units_sold": 7,
+          "sales_frequency": 3,
+          "total_revenue": 28061.0,
+          "avg_sale_value": 9353.67,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Jeans",
+          "category": "Clothing",
+          "total_units_sold": 7,
+          "sales_frequency": 2,
+          "total_revenue": 10512.0,
+          "avg_sale_value": 5256.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Slippers",
+          "category": "Footwear",
+          "total_units_sold": 7,
+          "sales_frequency": 2,
+          "total_revenue": 9619.0,
+          "avg_sale_value": 4809.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Smart Watch",
+          "category": "Electronics",
+          "total_units_sold": 7,
+          "sales_frequency": 4,
+          "total_revenue": 24780.0,
+          "avg_sale_value": 6195.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Moisturizer",
+          "category": "Cosmetics",
+          "total_units_sold": 6,
+          "sales_frequency": 2,
+          "total_revenue": 9465.0,
+          "avg_sale_value": 4732.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sofa",
+          "category": "Furniture",
+          "total_units_sold": 5,
+          "sales_frequency": 1,
+          "total_revenue": 11660.0,
+          "avg_sale_value": 11660.0,
+          "velocity_status": "High Sales Velocity"
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "line",
+        "title": "total_units_sold by category",
+        "x_axis_key": "category",
+        "y_axis_key": "total_units_sold",
+        "label": "total_units_sold",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "Identified 15 high-velocity products in the live dataset. Top in demand: Biscuits (30 units); Mouse (28 units); Sugar (23 units). 'Biscuits' leads demand with 30 units sold and requires proactive inventory monitoring.",
+      "recommendation": "1. Ensure adequate inventory buffer for top high-velocity products (Biscuits).\n2. Monitor real-time sales rates across top selling categories.\n3. Maintain supplier reorder cadences to prevent out-of-stock events.",
+      "original_query": "Which suppliers with average products.unit_cost in the top quartile for their category and lead_time_days > 12 also have on_time_rate < 0.85, and what is the total stock_count and stockout frequency of their supplied SKUs versus cheaper, more reliable alternatives?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.132,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.132,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'Which suppliers with average products.unit_cost in the top quartile for their category and lead_time_days > 12 also have on_time_rate < 0.85, and what is the total stock_count and stockout frequency of their supplied SKUs versus cheaper, more reliable alternatives?'"
+        },
+        {
+          "ts": 1791029464.133,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.133,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=stockout_risk, workflow=SELECT, conf=0.900, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.222,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.9) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.253,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.253,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: Which suppliers with average products.unit_cost in the top quartile for their category and lead_time_days > 12 also have on_time_rate < 0.85, and what is the total stock_count and stockout frequency of their supplied SKUs versus cheaper, more reliable alternatives?"
+        },
+        {
+          "ts": 1791029464.254,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.255,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: stockout_risk -> SQL: SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_i..."
+        },
+        {
+          "ts": 1791029464.255,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT product, category, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.284,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.363,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.363,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_id) AS sales_frequency, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(sales), 2) AS avg_sale_value, 'High Sales Velocity' AS velocity_status FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 15;"
+        },
+        {
+          "ts": 1791029464.365,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 15 rows."
+        },
+        {
+          "ts": 1791029464.365,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 15"
+        },
+        {
+          "ts": 1791029464.429,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.434,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.466,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.467,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 15 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.471,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.471,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AUDIT-11",
+      "mission_name": "Restock Churn & Volatility Signal",
+      "domain": "retail_clothing",
+      "severity": "MEDIUM",
+      "risk_score": 42,
+      "risk_factors": {
+        "affected_entities": {
+          "value": 21,
+          "score": 100,
+          "detail": "21 unique entities"
+        },
+        "dollar_exposure": {
+          "value": 0,
+          "score": 0,
+          "detail": "$0 exposure"
+        },
+        "velocity": {
+          "value": 21,
+          "score": 100,
+          "detail": "21 events"
+        },
+        "pep_involvement": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 PEP accounts"
+        },
+        "kyc_gaps": {
+          "value": 0,
+          "score": 0,
+          "detail": "0 KYC gaps"
+        },
+        "severity_escalation": {
+          "value": "HIGH",
+          "score": 50,
+          "detail": "Base: HIGH"
+        }
+      },
+      "sql": "SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_id) AS sales_frequency, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(sales), 2) AS avg_sale_value, 'High Sales Velocity' AS velocity_status FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 60;",
+      "data_count": 21,
+      "results": [
+        {
+          "product": "Biscuits",
+          "category": "Grocery",
+          "total_units_sold": 30,
+          "sales_frequency": 6,
+          "total_revenue": 19151.0,
+          "avg_sale_value": 3191.83,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Mouse",
+          "category": "Electronics",
+          "total_units_sold": 28,
+          "sales_frequency": 7,
+          "total_revenue": 133919.0,
+          "avg_sale_value": 19131.29,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sugar",
+          "category": "Grocery",
+          "total_units_sold": 23,
+          "sales_frequency": 4,
+          "total_revenue": 13246.0,
+          "avg_sale_value": 3311.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Shirt",
+          "category": "Clothing",
+          "total_units_sold": 20,
+          "sales_frequency": 4,
+          "total_revenue": 26471.0,
+          "avg_sale_value": 6617.75,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "T-Shirt",
+          "category": "Clothing",
+          "total_units_sold": 17,
+          "sales_frequency": 3,
+          "total_revenue": 21417.0,
+          "avg_sale_value": 7139.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Earphones",
+          "category": "Electronics",
+          "total_units_sold": 15,
+          "sales_frequency": 2,
+          "total_revenue": 75812.0,
+          "avg_sale_value": 37906.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sunscreen",
+          "category": "Cosmetics",
+          "total_units_sold": 13,
+          "sales_frequency": 2,
+          "total_revenue": 22041.0,
+          "avg_sale_value": 11020.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Resistance Band",
+          "category": "Sports",
+          "total_units_sold": 9,
+          "sales_frequency": 2,
+          "total_revenue": 39456.0,
+          "avg_sale_value": 19728.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Formal Shoes",
+          "category": "Footwear",
+          "total_units_sold": 8,
+          "sales_frequency": 2,
+          "total_revenue": 21196.0,
+          "avg_sale_value": 10598.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Dumbbells",
+          "category": "Sports",
+          "total_units_sold": 7,
+          "sales_frequency": 3,
+          "total_revenue": 28061.0,
+          "avg_sale_value": 9353.67,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Jeans",
+          "category": "Clothing",
+          "total_units_sold": 7,
+          "sales_frequency": 2,
+          "total_revenue": 10512.0,
+          "avg_sale_value": 5256.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Slippers",
+          "category": "Footwear",
+          "total_units_sold": 7,
+          "sales_frequency": 2,
+          "total_revenue": 9619.0,
+          "avg_sale_value": 4809.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Smart Watch",
+          "category": "Electronics",
+          "total_units_sold": 7,
+          "sales_frequency": 4,
+          "total_revenue": 24780.0,
+          "avg_sale_value": 6195.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Moisturizer",
+          "category": "Cosmetics",
+          "total_units_sold": 6,
+          "sales_frequency": 2,
+          "total_revenue": 9465.0,
+          "avg_sale_value": 4732.5,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sofa",
+          "category": "Furniture",
+          "total_units_sold": 5,
+          "sales_frequency": 1,
+          "total_revenue": 11660.0,
+          "avg_sale_value": 11660.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sneakers",
+          "category": "Footwear",
+          "total_units_sold": 4,
+          "sales_frequency": 1,
+          "total_revenue": 10492.0,
+          "avg_sale_value": 10492.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Sandals",
+          "category": "Footwear",
+          "total_units_sold": 2,
+          "sales_frequency": 1,
+          "total_revenue": 3732.0,
+          "avg_sale_value": 3732.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Shampoo",
+          "category": "Cosmetics",
+          "total_units_sold": 2,
+          "sales_frequency": 1,
+          "total_revenue": 3698.0,
+          "avg_sale_value": 3698.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Shelf",
+          "category": "Furniture",
+          "total_units_sold": 1,
+          "sales_frequency": 1,
+          "total_revenue": 8382.0,
+          "avg_sale_value": 8382.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Skipping Rope",
+          "category": "Sports",
+          "total_units_sold": 1,
+          "sales_frequency": 1,
+          "total_revenue": 2076.0,
+          "avg_sale_value": 2076.0,
+          "velocity_status": "High Sales Velocity"
+        },
+        {
+          "product": "Study Table",
+          "category": "Furniture",
+          "total_units_sold": 1,
+          "sales_frequency": 1,
+          "total_revenue": 10695.0,
+          "avg_sale_value": 10695.0,
+          "velocity_status": "High Sales Velocity"
+        }
+      ],
+      "visualization_config": {
+        "chart_type": "line",
+        "title": "total_units_sold by category",
+        "x_axis_key": "category",
+        "y_axis_key": "total_units_sold",
+        "label": "total_units_sold",
+        "description": "Auto-generated fallback chart"
+      },
+      "insight": "Identified 21 high-velocity products in the live dataset. Top in demand: Biscuits (30 units); Mouse (28 units); Sugar (23 units). 'Biscuits' leads demand with 30 units sold and requires proactive inventory monitoring.",
+      "recommendation": "1. Ensure adequate inventory buffer for top high-velocity products (Biscuits).\n2. Monitor real-time sales rates across top selling categories.\n3. Maintain supplier reorder cadences to prevent out-of-stock events.",
+      "original_query": "Which SKUs at which locations have experienced 3 or more transitions between stock_count = 0 and stock_count > reorder_point within the last 60 days (inferred via last_restocked_at frequency and stockout events), combined with high units_sold volatility in sales_events, indicating unstable replenishment cycles?",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791029464.133,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791029464.133,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "[IntentModule] Using Custom ML Intent Classifier for query: 'Which SKUs at which locations have experienced 3 or more transitions between stock_count = 0 and stock_count > reorder_point within the last 60 days (inferred via last_restocked_at frequency and stockout events), combined with high units_sold volatility in sales_events, indicating unstable replenishment cycles?'"
+        },
+        {
+          "ts": 1791029464.134,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.134,
+          "level": "INFO",
+          "node": "intent_service.py",
+          "msg": "[IntentService] Custom model result: retail=stockout_risk, workflow=SELECT, conf=0.900, complexity=Complex, clarify=False"
+        },
+        {
+          "ts": 1791029464.222,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: SELECT (conf: 0.9) | Needs Clarification: False"
+        },
+        {
+          "ts": 1791029464.245,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [generate_sql]"
+        },
+        {
+          "ts": 1791029464.245,
+          "level": "INFO",
+          "node": "SQL_GEN",
+          "msg": "Generating SQL for domain: retail_clothing | Query: Which SKUs at which locations have experienced 3 or more transitions between stock_count = 0 and stock_count > reorder_point within the last 60 days (inferred via last_restocked_at frequency and stockout events), combined with high units_sold volatility in sales_events, indicating unstable replenishment cycles?"
+        },
+        {
+          "ts": 1791029464.246,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.247,
+          "level": "INFO",
+          "node": "rule_engine.py",
+          "msg": "[SQLGenerator] Intent: stockout_risk -> SQL: SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_i..."
+        },
+        {
+          "ts": 1791029464.247,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "SQL Generated: SELECT product, category, SUM(quantity) AS total_u..."
+        },
+        {
+          "ts": 1791029464.276,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [validate_sql]"
+        },
+        {
+          "ts": 1791029464.318,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [execute_query]"
+        },
+        {
+          "ts": 1791029464.318,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Executing SQL: SELECT product, category, SUM(quantity) AS total_units_sold, COUNT(transaction_id) AS sales_frequency, ROUND(SUM(sales), 2) AS total_revenue, ROUND(AVG(sales), 2) AS avg_sale_value, 'High Sales Velocity' AS velocity_status FROM shop_sales WHERE UPPER(product) LIKE '%S%' GROUP BY product, category ORDER BY total_units_sold DESC LIMIT 60;"
+        },
+        {
+          "ts": 1791029464.32,
+          "level": "INFO",
+          "node": "DB_EXEC",
+          "msg": "Execution complete. Returned 21 rows."
+        },
+        {
+          "ts": 1791029464.32,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Query execution successful. Rows: 21"
+        },
+        {
+          "ts": 1791029464.381,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [analyze_stockout]"
+        },
+        {
+          "ts": 1791029464.386,
+          "level": "INFO",
+          "node": "stockout_analyzer.py",
+          "msg": "Stockout analysis for retail_clothing: 9 at-risk products found"
+        },
+        {
+          "ts": 1791029464.439,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [insight_recommendation]"
+        },
+        {
+          "ts": 1791029464.439,
+          "level": "INFO",
+          "node": "INSIGHT",
+          "msg": "Generating insights for 21 rows in domain: retail_clothing"
+        },
+        {
+          "ts": 1791029464.441,
+          "level": "INFO",
+          "node": "model.py",
+          "msg": "[IntentClassifier] ML prediction: stockout_risk (conf: 0.900) -> workflow: SELECT"
+        },
+        {
+          "ts": 1791029464.442,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [recommend_visualization]"
+        }
+      ]
+    }
+  ],
+  "clusters": [],
+  "narrative": {
+    "executive_summary": "LIVE scan across 11 missions reveals a systemic inventory control failure masking as medium-risk alerts, now the primary threat to revenue continuity. Automated reorder logic has failed across 69 products \u2014 flagging 21, 20, 15 and 13 SKUs for immediate replenishment yet recommending 0 units \u2014 while high-velocity SKUs including Oil (42 units), Biscuits (30), Mouse (28) and Sugar (23) accelerate toward stockout. Profitability is dangerously concentrated, with 'Mouse' alone driving \u20b939,496.35 (29.49% margin) of \u20b9162,180.57 total profit on \u20b9505,881 sales, amplified by inconsistent sales baselines (\u20b9505,881 vs \u20b9820,481) and fulfillment polarization in Mysuru (66 units, \u20b9177,753, 35% of revenue). Without immediate manual intervention, the platform faces cascading stockouts, lost sales, and margin erosion within the current replenishment cycle.",
+    "threat_vectors": [
+      {
+        "name": "Reorder Point Calibration Failure & Stockout Cascade",
+        "severity": "HIGH",
+        "description": "Four missions flagged 69 products requiring immediate replenishment but system recommends 0 units, indicating complete logic failure. With 30 high-velocity SKUs active, imminent stockout risk for top movers Oil (42), Biscuits (30), and Mouse (28) threatens revenue continuity."
+      },
+      {
+        "name": "Margin Concentration & Profit Fragility",
+        "severity": "MEDIUM",
+        "description": "Profit heavily concentrated in single SKU 'Mouse' (\u20b939,496.35, 29.49% margin) within \u20b9162,180 total profit pool (32% blended margin). Discrepancy with secondary dataset (\u20b9261,419 profit on \u20b9820,481 sales across 36 variants) signals reporting inconsistency and vulnerability to single-product demand shift."
+      },
+      {
+        "name": "Fulfillment Polarization & Demand Volatility",
+        "severity": "MEDIUM",
+        "description": "Sales polarized to Mysuru (66 units, \u20b9177,753) creating single-point fulfillment risk, while demand volatility spans 21 high-velocity products. Combined with 36-variant style collapse exposure and 2 critical low-stock items (Resistance Band 9 units), supply chain lacks resilience to localized disruption."
+      }
+    ],
+    "immediate_actions": [
+      "HALT automated reordering and execute manual reorder calculation within 24 hours for all 69 flagged SKUs, prioritizing Oil (42 units), Biscuits (30), Mouse (28), and Sugar (23)",
+      "Conduct emergency physical inventory and Days-of-Cover audit for top 5 velocity SKUs against lead times, with same-day safety stock deployment for Resistance Band and Sandals",
+      "Reconcile profit/sales baseline discrepancy (\u20b9505,881 vs \u20b9820,481) and stress-test margin impact if Mouse volume drops 20%, validating cost inputs for all 21 margin-analyzed items",
+      "Surge audit Mysuru fulfillment capacity handling 35% of revenue and resolve 4 phantom SKU referential integrity gaps to prevent order failure"
+    ],
+    "monitoring_recommendations": [
+      "Implement daily Days-of-Cover vs Lead Time dashboard for top 10 SKUs with automated alert when cover falls below 1.5x lead time",
+      "Establish weekly margin erosion and color-variant profitability tracking across 36 variants, flagging any SKU below 25% margin or >15% profit concentration",
+      "Deploy continuous location polarization and phantom SKU monitoring, alerting when any single location exceeds 30% of total units or sales"
+    ],
+    "overall_risk": 44,
+    "overall_severity": "MEDIUM",
+    "title": "Intelligence Brief - LIVE"
+  }
+}

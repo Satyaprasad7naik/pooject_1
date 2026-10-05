@@ -1,0 +1,1153 @@
+{
+  "scan_id": "scan-20261005T171259",
+  "timestamp": "2026-10-05T17:12:59.382522",
+  "stats": {
+    "total_missions": 10,
+    "critical_count": 0,
+    "high_count": 0,
+    "overall_risk": 0,
+    "overall_severity": "LOW"
+  },
+  "detections": [
+    {
+      "mission_id": "RC-SIZE-INVERSION-01",
+      "mission_name": "Size Curve Inversion Trap",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Within each products.style_name + products.color with >=30 total units_sold in last 90 days, calculate sales share by size vs inventory share by size (SUM inventory.stock_count per size / total stock for that style-color). Flag combinations where the size(s) comprising >35% of sales hold <15% of inventory AND the size(s) comprising <10% of sales hold >30% of inventory. Include size-level turnover (units_sold last 90 days / stock_count), total trapped value in overstocked sizes (stock_count * unit_cost), and days of stockout risk for understocked sizes at current velocity.",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791220292.375,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791220292.376,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Within each products.style_name + products.color with >=30 total units_sold in last 90 days, calculate sales share by size vs inventory share by size (SUM inventory.stock_count per size / total stock for that style-color). Flag combinations where the size(s) comprising >35% of sales hold <15% of inventory AND the size(s) comprising <10% of sales hold >30% of inventory. Include size-level turnover (units_sold last 90 days / stock_count), total trapped value in overstocked sizes (stock_count * unit_cost), and days of stockout risk for understocked sizes at current velocity."
+        },
+        {
+          "ts": 1791220292.376,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220301.44,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"size-level inventory vs sales imbal..."
+        },
+        {
+          "ts": 1791220301.44,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='size-level inventory vs ...d stockout risk metrics', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220301.942,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220313.891,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"Size-level inventory misallocation ..."
+        },
+        {
+          "ts": 1791220313.892,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='Size-level inventory mis...zes at current velocity', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220314.893,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220326.973,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"inventory_sales_size_mismat..."
+        },
+        {
+          "ts": 1791220326.973,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='inventory_sales_size_mis... for understocked sizes', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220326.973,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11e67fd50 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791220327.027,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791220327.028,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220339.22,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: Based on your schema, here are 2-3 specific questi..."
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-SUPPLIER-REVENUE-RISK-02",
+      "mission_name": "Revenue Concentration on Unreliable Supplier",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Rank SKUs by revenue (units_sold last 90 days * retail_price) and identify the top 20% revenue-generating SKUs per products.category. For each suppliers.supplier_id, calculate what % of that top-revenue cohort it supplies and its weighted AVG on_time_rate and lead_time_days. Flag suppliers supplying >25% of top-revenue SKUs in any category where their on_time_rate <90% or lead_time_days >16, and quantify revenue at risk (sum revenue of dependent SKUs) and avg days of coverage remaining (stock_count / daily velocity).",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791220292.377,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791220292.377,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Rank SKUs by revenue (units_sold last 90 days * retail_price) and identify the top 20% revenue-generating SKUs per products.category. For each suppliers.supplier_id, calculate what % of that top-revenue cohort it supplies and its weighted AVG on_time_rate and lead_time_days. Flag suppliers supplying >25% of top-revenue SKUs in any category where their on_time_rate <90% or lead_time_days >16, and quantify revenue at risk (sum revenue of dependent SKUs) and avg days of coverage remaining (stock_count / daily velocity)."
+        },
+        {
+          "ts": 1791220292.377,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220301.399,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"supplier_concentration_and_revenue_..."
+        },
+        {
+          "ts": 1791220301.399,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='supplier_concentration_a...evenue_at_risk_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220301.9,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220311.771,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"supplier_concentration_and_..."
+        },
+        {
+          "ts": 1791220311.771,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='supplier_concentration_a...is_for_top_revenue_SKUs', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220312.772,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220322.749,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"supplier_concentration_and_..."
+        },
+        {
+          "ts": 1791220322.749,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='supplier_concentration_a...evenue_at_risk_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220322.749,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11e7d9dd0 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791220322.803,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791220322.804,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220336.11,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: Based on your `RETAIL_CLOTHING` schema, your origi..."
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-GHOST-RESTOCK-03",
+      "mission_name": "Wasted Restock Ghost Inventory",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Find SKUs where inventory.last_restocked_at is within last 45 days (recent restock) but sales_events shows 0-2 units_sold in last 60 days and inventory.stock_count > inventory.reorder_point + 10. Join to products to get unit_cost and retail_price. Calculate wasted capital deployed (stock_count * unit_cost), days since restock vs zero-velocity period, and flag if supplier on_time_rate was not the issue (on_time_rate >90%) indicating demand misread rather than supply delay. Rank by trapped value.",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791220292.378,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791220292.378,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Find SKUs where inventory.last_restocked_at is within last 45 days (recent restock) but sales_events shows 0-2 units_sold in last 60 days and inventory.stock_count > inventory.reorder_point + 10. Join to products to get unit_cost and retail_price. Calculate wasted capital deployed (stock_count * unit_cost), days since restock vs zero-velocity period, and flag if supplier on_time_rate was not the issue (on_time_rate >90%) indicating demand misread rather than supply delay. Rank by trapped value."
+        },
+        {
+          "ts": 1791220292.378,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220300.415,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"Identify overstocked / dead-stock S..."
+        },
+        {
+          "ts": 1791220300.416,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='Identify overstocked / d...rapped value descending', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220300.917,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220309.976,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"identify_trapped_capital_in_recentl..."
+        },
+        {
+          "ts": 1791220309.977,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='identify_trapped_capital...d_slow_moving_inventory', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220310.98,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220319.689,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"Identify overstocked / dead-stock S..."
+        },
+        {
+          "ts": 1791220319.689,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='Identify overstocked / d...rapped value descending', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220319.689,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11e73cc50 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791220319.743,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791220319.744,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220332.77,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: Based on your schema, here are 3 specific question..."
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-CHANNEL-LOCATION-MISMATCH-04",
+      "mission_name": "Channel-Location Fulfillment Mismatch",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Aggregate sales_events.units_sold last 60 days by SKU and channel, and inventory.stock_count by SKU and location. Flag SKUs where >70% of sales are from one channel (e.g., online) but >70% of inventory.stock_count is held at a non-correlated location (e.g., physical store locations) with <20% of stock at the fulfillment-appropriate location. Estimate fulfillment friction cost as excess stock at wrong location * unit_cost and potential lost sales due to channel stockout (channel velocity * supplier lead_time_days).",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791220292.379,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791220292.379,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Aggregate sales_events.units_sold last 60 days by SKU and channel, and inventory.stock_count by SKU and location. Flag SKUs where >70% of sales are from one channel (e.g., online) but >70% of inventory.stock_count is held at a non-correlated location (e.g., physical store locations) with <20% of stock at the fulfillment-appropriate location. Estimate fulfillment friction cost as excess stock at wrong location * unit_cost and potential lost sales due to channel stockout (channel velocity * supplier lead_time_days)."
+        },
+        {
+          "ts": 1791220292.379,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220302.031,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"inventory_channel_mismatch_and_fulf..."
+        },
+        {
+          "ts": 1791220302.031,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='inventory_channel_mismat...lment_friction_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220302.532,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220311.306,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"inventory_channel_mismatch_..."
+        },
+        {
+          "ts": 1791220311.306,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='inventory_channel_mismat...lment_friction_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220312.307,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220338.149,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"fulfillment_friction_and_ch..."
+        },
+        {
+          "ts": 1791220338.149,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='fulfillment_friction_and...ntory_mismatch_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220338.149,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11e4da9d0 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791220338.203,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791220338.204,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220350.426,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: Based on your actual schema, here are 3 specific q..."
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-NEW-LAUNCH-FLOP-05",
+      "mission_name": "New SKU Launch Failure",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Identify products where products.created_at is within last 120 days (new launch) with inventory.stock_count >25 and retail_price > category median retail_price, but sales_events shows <5 units_sold in last 60 days. Calculate sell-through rate (units_sold / (units_sold + stock_count)), capital trapped (stock_count * unit_cost), and compare unit_cost and retail_price to category medians to determine if overpricing or over-assortment caused flop. Rank by inventory value at risk.",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791220292.379,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791220292.379,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Identify products where products.created_at is within last 120 days (new launch) with inventory.stock_count >25 and retail_price > category median retail_price, but sales_events shows <5 units_sold in last 60 days. Calculate sell-through rate (units_sold / (units_sold + stock_count)), capital trapped (stock_count * unit_cost), and compare unit_cost and retail_price to category medians to determine if overpricing or over-assortment caused flop. Rank by inventory value at risk."
+        },
+        {
+          "ts": 1791220292.38,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220306.167,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"new_launch_flop_analysis__h..."
+        },
+        {
+          "ts": 1791220306.167,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='new_launch_flop_analysis..._sell_through_diagnosis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220306.668,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220313.23,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"identify_underperforming_ne..."
+        },
+        {
+          "ts": 1791220313.23,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='identify_underperforming..._launches_flop_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220314.231,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220323.33,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\"intent\": \"new_product_flop_analysis - identify r..."
+        },
+        {
+          "ts": 1791220323.331,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='new_product_flop_analysi...inventory value at risk', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220323.331,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11e70ba50 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791220323.385,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791220323.386,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220335.373,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: Based on your schema, your original query is too c..."
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-COST-RELIABILITY-MISMATCH-06",
+      "mission_name": "Premium Cost for Unreliable Supply",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Per products.category, calculate quartiles for suppliers.unit_cost proxy (AVG products.unit_cost per supplier) and suppliers.on_time_rate. Flag suppliers in top quartile of cost (most expensive) AND bottom quartile of on_time_rate (<85%) or top quartile of lead_time_days (>20). For their SKUs, list SKU, unit_cost premium vs category median, on_time_rate, lead_time_days, stock_count, and turnover last 60 days. Quantify annual cost premium (premium * units_sold) vs reliability penalty to expose paying more for worse service.",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791220292.38,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791220292.381,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Per products.category, calculate quartiles for suppliers.unit_cost proxy (AVG products.unit_cost per supplier) and suppliers.on_time_rate. Flag suppliers in top quartile of cost (most expensive) AND bottom quartile of on_time_rate (<85%) or top quartile of lead_time_days (>20). For their SKUs, list SKU, unit_cost premium vs category median, on_time_rate, lead_time_days, stock_count, and turnover last 60 days. Quantify annual cost premium (premium * units_sold) vs reliability penalty to expose paying more for worse service."
+        },
+        {
+          "ts": 1791220292.381,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220301.206,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"Per product category, calculate qua..."
+        },
+        {
+          "ts": 1791220301.206,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='Per product category, ca... more for worse service', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220301.708,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220310.218,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"supplier_cost_vs_reliability_analys..."
+        },
+        {
+          "ts": 1791220310.218,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='supplier_cost_vs_reliability_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220311.219,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220323.411,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"supplier_performance_analysis - qua..."
+        },
+        {
+          "ts": 1791220323.411,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='supplier_performance_ana... vs reliability penalty', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220323.411,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11e64f850 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791220323.465,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791220323.466,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220335.888,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: Based on your actual schema, here are 3 specific q..."
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-BREACH-UNRECOVERABLE-07",
+      "mission_name": "Active Breach with Unrecoverable Lead Time",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Find SKUs where inventory.stock_count < inventory.reorder_point (active breach) AND days of coverage (stock_count / avg daily units_sold last 30 days) < suppliers.lead_time_days where avg daily sales >0.3. Include only SKUs with suppliers.on_time_rate <88% to compound risk. Calculate coverage gap (lead_time_days - coverage_days), projected stockout days before replenishment arrives, and estimated lost revenue (gap * avg daily sales * retail_price). Rank by revenue at risk.",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791220292.382,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791220292.382,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Find SKUs where inventory.stock_count < inventory.reorder_point (active breach) AND days of coverage (stock_count / avg daily units_sold last 30 days) < suppliers.lead_time_days where avg daily sales >0.3. Include only SKUs with suppliers.on_time_rate <88% to compound risk. Calculate coverage gap (lead_time_days - coverage_days), projected stockout days before replenishment arrives, and estimated lost revenue (gap * avg daily sales * retail_price). Rank by revenue at risk."
+        },
+        {
+          "ts": 1791220292.382,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220300.431,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"inventory_stockout_risk_and..."
+        },
+        {
+          "ts": 1791220300.431,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='inventory_stockout_risk_...evenue_at_risk_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220300.932,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220308.611,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"inventory_risk_analysis - f..."
+        },
+        {
+          "ts": 1791220308.611,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='inventory_risk_analysis ... AND on_time_rate < 88%', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220309.612,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220316.182,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"inventory_risk_query_rank_b..."
+        },
+        {
+          "ts": 1791220316.182,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='inventory_risk_query_rank_by_revenue_at_risk', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220316.182,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x105c9d2d0 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791220316.236,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791220316.238,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220327.717,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: Based on your actual schema, here are 3 specific q..."
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-TAIL-SIZE-TRAP-08",
+      "mission_name": "Tail Size Capital Trap",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "For each products.style_name + color with >=4 distinct sizes and total stock_count >40, calculate concentration: % of units_sold last 90 days from top 2 sizes. Flag where top 2 sizes drive >80% of sales but bottom sizes (remaining sizes) hold >50% of inventory.stock_count and have turnover <0.2. Compute trapped value in tail sizes (sum stock_count * unit_cost for bottom sizes), and months to clear at current velocity, to flag size proliferation without demand.",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791220292.383,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791220292.383,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: For each products.style_name + color with >=4 distinct sizes and total stock_count >40, calculate concentration: % of units_sold last 90 days from top 2 sizes. Flag where top 2 sizes drive >80% of sales but bottom sizes (remaining sizes) hold >50% of inventory.stock_count and have turnover <0.2. Compute trapped value in tail sizes (sum stock_count * unit_cost for bottom sizes), and months to clear at current velocity, to flag size proliferation without demand."
+        },
+        {
+          "ts": 1791220292.383,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220303.216,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"inventory_size_proliferatio..."
+        },
+        {
+          "ts": 1791220303.216,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='inventory_size_prolifera..._trapped_value_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220303.718,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220315.282,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"Identify size proliferation without..."
+        },
+        {
+          "ts": 1791220315.282,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='Identify size proliferat...lue and months to clear', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220316.283,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220327.137,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"Inventory and sales concentration a..."
+        },
+        {
+          "ts": 1791220327.137,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='Inventory and sales conc...ear at current velocity', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220327.137,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11e79a850 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791220327.191,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791220327.193,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220339.905,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: Based on your schema, here are 3 specific question..."
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-AGED-DEADSTOCK-09",
+      "mission_name": "Aged Seasonal Dead Stock",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "Identify SKUs where products.created_at < 180 days ago (aged assortment) AND inventory.last_restocked_at >90 days ago AND inventory.stock_count >20 AND sales_events.units_sold last 90 days <=4. Calculate inventory age (days since created_at), days since last sale, total inventory value (stock_count * unit_cost), and markdown required to clear (value at retail_price vs at 50% markdown). Flag categories where >15% of SKUs meet this criteria indicating systemic overbuy of aging styles.",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791220292.384,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791220292.384,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: Identify SKUs where products.created_at < 180 days ago (aged assortment) AND inventory.last_restocked_at >90 days ago AND inventory.stock_count >20 AND sales_events.units_sold last 90 days <=4. Calculate inventory age (days since created_at), days since last sale, total inventory value (stock_count * unit_cost), and markdown required to clear (value at retail_price vs at 50% markdown). Flag categories where >15% of SKUs meet this criteria indicating systemic overbuy of aging styles."
+        },
+        {
+          "ts": 1791220292.384,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220302.105,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"slow_moving_aged_inventory_overstoc..."
+        },
+        {
+          "ts": 1791220302.105,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='slow_moving_aged_inventory_overstock_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220302.606,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220308.6,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"aged_slow_moving_overstock_analysis..."
+        },
+        {
+          "ts": 1791220308.6,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='aged_slow_moving_overstock_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220309.602,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220317.18,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"identify_aged_slow_moving_o..."
+        },
+        {
+          "ts": 1791220317.181,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='identify_aged_slow_moving_overstock_skus', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220317.181,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11e67cbd0 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791220317.235,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791220317.236,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220329.913,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: Based on your schema, here are 3 specific, answera..."
+        }
+      ]
+    },
+    {
+      "mission_id": "RC-FRAGMENTED-SIZE-STOCKOUT-10",
+      "mission_name": "Fragmented Size Stockout Risk",
+      "domain": "retail_clothing",
+      "severity": "LOW",
+      "risk_score": 0,
+      "risk_factors": {},
+      "sql": null,
+      "data_count": 0,
+      "results": [],
+      "visualization_config": null,
+      "insight": null,
+      "recommendation": null,
+      "original_query": "For each products.style_name, aggregate inventory.stock_count by size across all locations and sales velocity by size last 30 days. Flag styles where overall style stock_count appears healthy (>50 units) but 1-2 core sizes (M, L) have stock_count <6 across all locations while velocity >1.0 unit/day, masked by excess in fringe sizes (XS, XXL). Calculate size-level days of coverage, stockout probability before supplier lead_time_days, and lost revenue if core size stocks out while fringe sizes remain dead.",
+      "depth": 0,
+      "parent_mission_id": null,
+      "rationale": "",
+      "timestamp": "LIVE AUDIT",
+      "logs": [
+        {
+          "ts": 1791220292.385,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Node: [classify_intent]"
+        },
+        {
+          "ts": 1791220292.385,
+          "level": "INFO",
+          "node": "INTENT",
+          "msg": "Classifying intent with LLM for domain: retail_clothing | Query: For each products.style_name, aggregate inventory.stock_count by size across all locations and sales velocity by size last 30 days. Flag styles where overall style stock_count appears healthy (>50 units) but 1-2 core sizes (M, L) have stock_count <6 across all locations while velocity >1.0 unit/day, masked by excess in fringe sizes (XS, XXL). Calculate size-level days of coverage, stockout probability before supplier lead_time_days, and lost revenue if core size stocks out while fringe sizes remain dead."
+        },
+        {
+          "ts": 1791220292.385,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220301.566,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"size_level_inventory_imbala..."
+        },
+        {
+          "ts": 1791220301.566,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='size_level_inventory_imb..._stockout_risk_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220302.068,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220309.029,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: {\n  \"intent\": \"inventory_size_imbalance_and_stocko..."
+        },
+        {
+          "ts": 1791220309.03,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='inventory_size_imbalance..._stockout_risk_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220310.031,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220316.799,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: ```json\n{\n  \"intent\": \"inventory_size_level_aggreg..."
+        },
+        {
+          "ts": 1791220316.799,
+          "level": "WARNING",
+          "node": "resilient_llm.py",
+          "msg": "LLM Pydantic validation failed: 2 validation errors for IntentClassification\nintent\n  Input should be 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'SCHEMA_QUERY', 'OFF_TOPIC' or 'UNKNOWN' [type=literal_error, input_value='inventory_size_level_agg..._stockout_risk_analysis', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ncomplexity\n  Input should be 'Simple', 'Medium' or 'Complex' [type=literal_error, input_value='high', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error"
+        },
+        {
+          "ts": 1791220316.799,
+          "level": "ERROR",
+          "node": "resilient_llm.py",
+          "msg": "Structured LLM call failed after retries: RetryError[<Future at 0x11e770d50 state=finished raised LLMParsingError>]. Returning fallback."
+        },
+        {
+          "ts": 1791220316.853,
+          "level": "INFO",
+          "node": "ORCHESTRATOR",
+          "msg": "Intent classified: UNKNOWN (conf: 0.0) | Needs Clarification: True"
+        },
+        {
+          "ts": 1791220316.854,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM [openai] using model [claude-opus-5] generating response..."
+        },
+        {
+          "ts": 1791220329.099,
+          "level": "INFO",
+          "node": "llm.py",
+          "msg": "LLM response received from [claude-opus-5]. Snippet: Based on your schema, here are 3 specific question..."
+        }
+      ]
+    }
+  ],
+  "clusters": [],
+  "narrative": {
+    "executive_summary": "LIVE scan of 10 missions across retail_clothing completed with uniform LOW severity and risk_score 0 across all detections. No active threat vectors were identified and no cross-domain threat clusters were correlated. However, all 10 missions report data_count 0 and empty insights, indicating zero records were analyzed. This represents a potential intelligence blind spot \u2014 current posture is unverified rather than confirmed secure \u2014 requiring immediate validation of data ingestion before an all-clear can be declared.",
+    "threat_vectors": [
+      {
+        "name": "Intelligence Visibility Gap - Zero Data Ingestion",
+        "severity": "MEDIUM",
+        "description": "All 10 missions (including Size Curve Inversion, Revenue Concentration, Ghost Inventory, and 7 others) returned data_count 0 and risk_score 0, indicating the scan executed without underlying data and leaving the environment unmonitored."
+      },
+      {
+        "name": "Unverified Risk Posture Across Core Domains",
+        "severity": "MEDIUM",
+        "description": "Despite coverage claimed across security, compliance, risk, and operations, no findings or correlations were generated, preventing validation of actual exposure in retail_clothing operations."
+      }
+    ],
+    "immediate_actions": [
+      "Validate data pipeline and source connectors for retail_clothing immediately \u2014 confirm why all 10 missions ingested 0 records",
+      "Re-run full scan with verified dataset and confirm data_count >0 before briefing board on risk posture",
+      "Treat current LOW status as inconclusive \u2014 maintain existing controls and do not downgrade vigilance until re-scan completes",
+      "Audit scan logs and ingestion timestamps to rule out configuration error or failed mission execution"
+    ],
+    "monitoring_recommendations": [
+      "Implement continuous data health monitoring \u2014 alert on data_count 0 or empty insight for any mission in future scans",
+      "Schedule automated re-scan within 24 hours and establish baseline data volume thresholds for anomaly detection",
+      "Maintain cross-domain correlation monitoring to detect emergent threat clusters once data flow is restored"
+    ],
+    "overall_risk": 0,
+    "overall_severity": "LOW",
+    "title": "Intelligence Brief - LIVE"
+  }
+}
